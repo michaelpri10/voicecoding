@@ -5,6 +5,7 @@ def verify(val_type, val):
         return False
 
 def check_int(val):
+    val = val.replace("negative ", "-")
     try:
         int_val = int(val)
         return int_val

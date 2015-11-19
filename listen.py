@@ -21,7 +21,7 @@ try:
                     command = value.encode("utf-8")
                 else:
                     command = value
-                
+                print(command) 
                 code = eval_command(command)
                 if code:
                     exec_code(code)

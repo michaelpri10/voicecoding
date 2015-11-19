@@ -4,9 +4,9 @@ VoiceCoding is a program that will allow people to code in Python using their vo
 ## Documentation
 ### Commands
 
-- assign [[data type](#data-types) {value}] to [variable {name}]
-- print [[data type](#data-types) {value}]
+- assign [[data type](#data-types) {value}] to [variable {name}] - assigns a value to a variable; ie: x = 10, y = "Hello, world!"
+- print [[data type](#data-types) {value}] - prints a value; ie: print(10), print("Hello, world!")
 
-###data-types
+### Data Types
 
-- integer - ie: 1, 10, 1587, 234891
+- integer - ie: 1, 10, 1587, 234891, -4, -25

@@ -2,6 +2,7 @@ from command_functions.helpers.format_var_func_name import format_var_func_name
 from command_functions.helpers.format_value import format_value
 
 def assign_variable(to_parse):
+    to_parse = to_parse.replace("two variable", "to variable")
     unformatted_name_place = to_parse.find(" to variable ")
     if unformatted_name_place == -1:
         return False

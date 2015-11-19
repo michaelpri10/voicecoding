@@ -1,6 +1,6 @@
 import speech_recognition as sr
 from eval_command import eval_command
-from exec_code import exec_code
+# from exec_code import exec_code
 
 r = sr.Recognizer()
 m = sr.Microphone()
@@ -24,7 +24,13 @@ try:
                 print(command) 
                 code = eval_command(command)
                 if code:
-                    exec_code(code)
+                    print(">>> {0}".format(code))
+                    try:
+                        exec(code)
+                    except Exception as e:
+                        print(e.__doc__)
+                        print(e)
+
                 else:
                     print("Invalid command")
 

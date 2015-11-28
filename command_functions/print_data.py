@@ -1,4 +1,4 @@
-from command_functions.helpers.format_value import format_value
+from data_types import format_value
 
 def print_data(to_parse):
     print_value = format_value(to_parse)

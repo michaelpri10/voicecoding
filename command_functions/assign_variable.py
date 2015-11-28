@@ -1,5 +1,5 @@
 from command_functions.helpers.format_var_func_name import format_var_func_name
-from command_functions.helpers.format_value import format_value
+from data_types import format_value
 
 def assign_variable(to_parse):
     to_parse = to_parse.replace("two variable", "to variable")

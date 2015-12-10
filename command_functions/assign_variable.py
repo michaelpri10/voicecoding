@@ -3,6 +3,7 @@ from data_types import format_value
 
 def assign_variable(to_parse):
     to_parse = to_parse.replace("two variable", "to variable")
+    to_parse = to_parse.replace(" - variable ", " to variable ")
     unformatted_name_place = to_parse.find(" to variable ")
     if unformatted_name_place == -1:
         return False

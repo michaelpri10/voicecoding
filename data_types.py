@@ -35,6 +35,7 @@ def check_var(val):
 
 def check_equation(val):
     operations = {"plus": "+",
+                  "Plus": "=",
                   "+ ": " + ",
                   "minus": "-",
                   "times": "*",
@@ -71,10 +72,20 @@ def check_equation(val):
     
     return "({0})".format(equation)
 
+def check_bool(val):
+    if val.lower() == "false":
+        return "False"
+    elif val.lower() == "true":
+        return "True"
+    else:
+        return False
+
 data_types = {
              "integer": check_int,
              "string": check_str,
              "strength": check_str,
              "variable": check_var,
-             "equation": check_equation
+             "equation": check_equation,
+             "boolean": check_bool,
+             "Boolean": check_bool
              }

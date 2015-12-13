@@ -1,22 +1,36 @@
 from command_functions.helpers.format_var_func_name import format_var_func_name
+from text2num import text2num
 
-def verify(val_type, val):
-    if val_type in data_types:
-        return data_types[val_type](val)
+def verify(val, val_type=None):
+    if val_type == None:
+        for i in single_data_types:
+            if i(val) == False:
+                pass 
+            else:
+                return i(val)
+    if val_type in container_data_types:
+        return container_data_types[val_type](val)
     else:
         return False
 
 def format_value(val):
+    val = val.strip()
     data_type = val.split()[0]
-    data_value = " ".join(val.split()[1:])
-    var_val = verify(data_type, data_value)
-    if var_val:
-        return var_val
+    if data_type in container_data_types:
+        data_value = " ".join(val.split()[1:])
+        var_val = verify(data_value, data_type)
     else:
+        var_val = verify(val)
+    if var_val == False:
         return False
+    else:
+        return var_val
 
 def check_int(val):
-    val = val.replace("negative ", "-")
+    try:
+        val = text2num(val)
+    except:
+        pass
     try:
         int_val = int(val)
         return int_val
@@ -35,14 +49,10 @@ def check_var(val):
 
 def check_equation(val):
     operations = {"plus": "+",
-                  "Plus": "=",
+                  "Plus": "+",
                   "+ ": " + ",
                   "minus": "-",
                   "times": "*",
-                  "X integer": " * integer",
-                  "X variable": " * variable",
-                  "x integer": " * integer",
-                  "x variable": " * variable",
                   "divided by": "/",
                   "over": "/",
                   "to the power of": "**"
@@ -50,6 +60,9 @@ def check_equation(val):
     equation = val
     for i in operations:
         equation = equation.replace(i, operations[i])
+    if "variable X" not in equation and "variable x" not in equation:
+        equation = equation.replace(" x ", " * ")
+        equation = equation.replace(" X ", " * ")
     print(equation)
     
     eq_operations = [i for i in equation.split() if i in operations.values()]
@@ -75,17 +88,31 @@ def check_equation(val):
 def check_bool(val):
     if val.lower() == "false":
         return "False"
-    elif val.lower() == "true":
+    elif val.lower() in ["true", "through", "tru"]:
         return "True"
     else:
         return False
 
-data_types = {
-             "integer": check_int,
-             "string": check_str,
-             "strength": check_str,
-             "variable": check_var,
+def check_list(val):
+    list_items = val.split("cut")
+    formatted = [format_value(i) for i in list_items]
+    for i in formatted:
+        if type(i) is str:
+            formatted[formatted.index(i)] = i.replace('"', "")
+    if False in formatted:
+        return False
+    else:
+        for i in formatted:
+            if i.lower() == "false":
+                formatted[formatted.index(i)] = False
+            elif i.lower() in ["true", "through", "tru"]:
+                formatted[formatted.index(i)] = True
+        return "{0}".format(formatted)
+
+single_data_types = [check_int,  check_bool, check_str]
+
+container_data_types = {
              "equation": check_equation,
-             "boolean": check_bool,
-             "Boolean": check_bool
+             "variable": check_var,
+             "list": check_list
              }

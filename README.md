@@ -4,8 +4,8 @@ VoiceCoding is a program that will allow people to code in Python using their vo
 ## Documentation
 ### Commands
 
-- assign [[data type](#data-types) {value}] to [variable {name}] - assigns a value to a variable; ie: `x = 10`, `y = "hello, world!"`, `z = y`
-- print [[data type](#data-types) {value}] - prints a value; ie: `print(10)`, `print("Hello, world!")`, `print(x)`
+- "assign" [[data type](#data-types) {value}] to ["variable" {name}] - assigns a value to a variable - ie: `x = 10`, `y = "hello, world!"`, `z = y`
+- "print" [[data type](#data-types) {value}] - prints a value - ie: `print(10)`, `print("Hello, world!")`, `print(x)`
 
 ### Data Types
 
@@ -16,4 +16,4 @@ VoiceCoding is a program that will allow people to code in Python using their vo
 - list - groups other data types together - ie: `[1, 2, 3]`, `["hello", "world"]`, `[x, y, z]`
 - equation - for math and simple string concatenation - `1 + 1`, `4 * 6`, `3/7`, `"hello" + "world"`, `"hello world" * 5`
 
-\*Doesn't have be explicity defined when using this data type in a command; you can just say "one" instead of "integer one" to get the result of `1` 
+\*<sup>Doesn't have be explicity defined when using this data type in a command. You can just say "one" instead of "integer one" to get the result of `1`.</sup>

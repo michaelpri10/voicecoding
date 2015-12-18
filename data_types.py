@@ -3,20 +3,23 @@ from text2num import text2num
 
 def verify(val, val_type=None):
     if val_type == None:
-        for i in single_data_types:
+        for i in assumed_data_types:
             if i(val) == False:
                 pass 
             else:
                 return i(val)
-    if val_type in container_data_types:
-        return container_data_types[val_type](val)
+    if val_type in data_types:
+        return data_types[val_type](val)
     else:
         return False
 
 def format_value(val):
     val = val.strip()
-    data_type = val.split()[0]
-    if data_type in container_data_types:
+    try:
+        data_type = val.split()[0].lower()
+    except:
+        data_type = None
+    if data_type in data_types:
         data_value = " ".join(val.split()[1:])
         var_val = verify(data_value, data_type)
     else:
@@ -103,16 +106,19 @@ def check_list(val):
         return False
     else:
         for i in formatted:
-            if i.lower() == "false":
+            if str(i).lower() == "false":
                 formatted[formatted.index(i)] = False
-            elif i.lower() in ["true", "through", "tru"]:
+            elif str(i).lower() in ["true", "through", "tru"]:
                 formatted[formatted.index(i)] = True
         return "{0}".format(formatted)
 
-single_data_types = [check_int,  check_bool, check_str]
+assumed_data_types = [check_int,  check_bool, check_str]
 
-container_data_types = {
-             "equation": check_equation,
+data_types = {
+             "string": check_str,
+             "integer": check_int,
+             "boolean": check_bool,
              "variable": check_var,
+             "equation": check_equation,
              "list": check_list
              }

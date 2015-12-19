@@ -1,4 +1,4 @@
-from command_functions.helpers.format_var_func_name import format_var_func_name
+from helpers.format_var_func_name import format_var_func_name
 from data_types import format_value
 
 def assign_variable(to_parse):

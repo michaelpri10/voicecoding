@@ -1,5 +1,5 @@
-from command_functions.helpers.format_var_func_name import format_var_func_name
-from text2num import text2num
+from helpers.format_var_func_name import format_var_func_name
+from helpers.text2num import text2num
 
 def verify(val, val_type=None):
     if val_type == None:

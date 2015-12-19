@@ -1,6 +1,6 @@
 builtins = {"abs": "abs",
             "absolute": "abs",
-            "absolute value": "abs",
+            "absolutevalue": "abs",
             "any": "any",
             "ne": "any",
             "ny": "any",
@@ -86,6 +86,7 @@ builtins = {"abs": "abs",
             "len": "len",
             "when": "len",
             "length": "len",
+            "list": "list",
             "locals": "locals",
             "local": "locals",
             "map": "map",
@@ -148,3 +149,10 @@ builtins = {"abs": "abs",
             "zip": "zip",
             "import": "__import__"
            }
+
+def to_builtin(func):
+    func = "".join(i for i in func.lower() if i.isalpha())
+    if func in builtins:
+        return builtins[func]
+    else:
+        return False

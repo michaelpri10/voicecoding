@@ -1,5 +1,7 @@
 from helpers.format_var_func_name import format_var_func_name
 from helpers.text2num import text2num
+from helpers.convert_list_vals import convert_list_vals
+from helpers.to_builtin import to_builtin
 
 def verify(val, val_type=None):
     if val_type == None:
@@ -98,20 +100,30 @@ def check_bool(val):
 
 def check_list(val):
     list_items = val.split("cut")
-    formatted = [format_value(i) for i in list_items]
-    for i in formatted:
-        if type(i) is str:
-            formatted[formatted.index(i)] = i.replace('"', "")
-    if False in formatted:
+    l = convert_list_vals(list_items)
+    if l == False:
         return False
     else:
-        for i in formatted:
-            if str(i).lower() == "false":
-                formatted[formatted.index(i)] = False
-            elif str(i).lower() in ["true", "through", "tru"]:
-                formatted[formatted.index(i)] = True
-        return "{0}".format(formatted)
+        return "{0}".format(list(l))
 
+def check_func(val):
+    val = val.replace("params", "parameters")
+    if len(val.split("parameters")) > 1:
+        param_items = val.split("parameters")[-1].split("cut")
+        parameters = convert_list_vals(param_items)
+    else:
+        parameters = () 
+    if parameters == False:
+        return False
+    else:
+        parameters = tuple(parameters)
+    function_name = val.split("parameters")[0]
+    if to_builtin(function_name):
+        function_name = to_builtin(function_name)
+    else:
+        function_name = format_var_func_name(function_name.rstrip())
+    return "{0}{1}".format(function_name, parameters)
+    
 assumed_data_types = [check_int,  check_bool, check_str]
 
 data_types = {
@@ -120,5 +132,6 @@ data_types = {
              "boolean": check_bool,
              "variable": check_var,
              "equation": check_equation,
-             "list": check_list
+             "list": check_list,
+             "function": check_func
              }

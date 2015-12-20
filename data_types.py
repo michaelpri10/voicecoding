@@ -104,7 +104,7 @@ def check_list(val):
     if l == False:
         return False
     else:
-        return "{0}".format(list(l))
+        return "{0}".format(l)
 
 def check_func(val):
     val = val.replace("params", "parameters")
@@ -116,7 +116,7 @@ def check_func(val):
     if parameters == False:
         return False
     else:
-        parameters = tuple(parameters)
+        parameters = "{0}{1}{2}".format("(", parameters[1:-1], ")")
     function_name = val.split("parameters")[0]
     if to_builtin(function_name):
         function_name = to_builtin(function_name)

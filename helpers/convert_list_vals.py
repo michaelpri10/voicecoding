@@ -6,10 +6,6 @@ def convert_list_vals(vals):
         if len(vals) == 0:
             return []
     formatted = [data_types.format_value(i) for i in vals]
-    print(formatted)
-    for i in formatted:
-        if type(i) is str:
-            formatted[formatted.index(i)] = i.replace('"', "")
     if False in formatted:
         return False
     else:
@@ -18,4 +14,5 @@ def convert_list_vals(vals):
                 formatted[formatted.index(i)] = False
             elif str(i).lower() in ["true", "through", "tru"]:
                 formatted[formatted.index(i)] = True
-    return formatted
+        final = "".join([i for i in list(str(formatted)) if i != "'"])
+        return final

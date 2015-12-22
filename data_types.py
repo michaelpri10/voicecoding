@@ -101,10 +101,35 @@ def check_bool(val):
 def check_list(val):
     list_items = val.split("cut")
     l = convert_list_vals(list_items)
+    print(l)
     if l == False:
         return False
     else:
         return "{0}".format(l)
+
+def check_tuple(val):
+    tuple_items = val.split("cut")
+    t = convert_list_vals(tuple_items)
+    if t == False:
+        return False
+    else:
+        if t == []:
+            return "()"
+        elif "," not in t:
+            return "{0}{1}{2}".format("(", t[1:-1], ",)")
+        else:
+            return "{0}{1}{2}".format("(", t[1:-1], ")")
+
+def check_set(val):
+    set_items = val.split("cut")
+    s = convert_list_vals(set_items)
+    if s == False:
+        return False
+    else:
+        if s == []:
+            return "set()"
+        else:
+            return "{0}{1}{2}".format("{", s[1:-1], "}")
 
 def check_func(val):
     val = val.replace("params", "parameters")
@@ -133,5 +158,7 @@ data_types = {
              "variable": check_var,
              "equation": check_equation,
              "list": check_list,
+             "tuple": check_tuple,
+             "set": check_set,
              "function": check_func
              }

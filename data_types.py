@@ -31,6 +31,9 @@ def format_value(val):
     else:
         return var_val
 
+def check_str(val):
+    return '"{0}"'.format(val)
+
 def check_int(val):
     try:
         val = text2num(val)
@@ -42,8 +45,27 @@ def check_int(val):
     except ValueError:
         return False
 
-def check_str(val):
-    return '"{0}"'.format(val)
+def check_float(val):
+    val = val.replace("point", ".")
+    parts = val.split(".")
+    try:
+        parts[0] = str(text2num(parts[0]))
+        parts[1] = str(text2num(parts[1]))
+    except:
+        pass
+    try:
+        val_float = float(".".join(parts))
+        return val_float
+    except:
+        return False
+
+def check_bool(val):
+    if val.lower() == "false":
+        return "False"
+    elif val.lower() in ["true", "through", "tru"]:
+        return "True"
+    else:
+        return False
 
 def check_var(val):
     variable = format_var_func_name(val)
@@ -89,14 +111,6 @@ def check_equation(val):
         equation = equation.replace(i, str(operand_dict[i]))
     
     return "({0})".format(equation)
-
-def check_bool(val):
-    if val.lower() == "false":
-        return "False"
-    elif val.lower() in ["true", "through", "tru"]:
-        return "True"
-    else:
-        return False
 
 def check_list(val):
     list_items = val.split("cut")
@@ -149,11 +163,12 @@ def check_func(val):
         function_name = format_var_func_name(function_name.rstrip())
     return "{0}{1}".format(function_name, parameters)
     
-assumed_data_types = [check_int,  check_bool, check_str]
+assumed_data_types = [check_int, check_float, check_bool, check_str]
 
 data_types = {
              "string": check_str,
              "integer": check_int,
+             "float": check_float,
              "boolean": check_bool,
              "variable": check_var,
              "equation": check_equation,

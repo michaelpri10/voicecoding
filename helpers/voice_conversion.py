@@ -1,10 +1,11 @@
-convert_at_beginning = {"a sine": "assign",
-                        "assigned": "assign" 
-                       }
+convert_commands = {"a sine": "assign",
+                    "assigned": "assign" 
+                   }
 
 def voice_conversion(speech, time):
-    if time == "beginning":
-        for i in convert_at_beginning:
-            speech = speech.replace(i, convert_at_beginning[i])
+    if time == "command":
+        for i in convert_commands:
+            if speech.startswith(i):
+                speech = speech.replace(i, convert_commands[i])
 
     return speech

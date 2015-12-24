@@ -1,7 +1,7 @@
 from helpers.format_var_func_name import format_var_func_name
 from helpers.text2num import text2num
 from helpers.convert_list_vals import convert_list_vals
-from helpers.to_builtin import to_builtin
+from helpers.to_builtin import to_builtin_func
 
 def verify(val, val_type=None):
     if val_type == None:
@@ -157,7 +157,7 @@ def check_func(val):
     else:
         parameters = "{0}{1}{2}".format("(", parameters[1:-1], ")")
     function_name = val.split("parameters")[0]
-    if to_builtin(function_name):
+    if to_builtin_func(function_name):
         function_name = to_builtin(function_name)
     else:
         function_name = format_var_func_name(function_name.rstrip())

@@ -2,16 +2,21 @@ from helpers.format_var_func_name import format_var_func_name
 from helpers.text2num import text2num
 from helpers.convert_list_vals import convert_list_vals
 from helpers.to_builtin import to_builtin
+from helpers.voice_conversion import voice_conversion
+from helpers.get_method import get_method
+from helpers.get_params import get_params
 
 def verify(val, val_type=None):
+    method = get_method(val)
+    val = voice_conversion(val, "method").replace(method[1], "").rstrip()
     if val_type == None:
         for i in assumed_data_types:
             if i(val) == False:
                 pass 
             else:
-                return i(val)
+                return "{0}{1}".format(i(val), method[0])
     if val_type in data_types:
-        return data_types[val_type](val)
+        return "{0}{1}".format(data_types[val_type](val), method[0])
     else:
         return False
 
@@ -146,22 +151,17 @@ def check_set(val):
             return "{0}{1}{2}".format("{", s[1:-1], "}")
 
 def check_func(val):
-    val = val.replace("params", "parameters")
-    if len(val.split("parameters")) > 1:
-        param_items = val.split("parameters")[-1].split("cut")
-        parameters = convert_list_vals(param_items)
-    else:
-        parameters = () 
-    if parameters == False:
-        return False
-    else:
-        parameters = "{0}{1}{2}".format("(", parameters[1:-1], ")")
+    val = voice_conversion(val, "function") 
+    parameters = get_params(val)
     function_name = val.split("parameters")[0]
     if to_builtin(function_name):
         function_name = to_builtin(function_name)
     else:
         function_name = format_var_func_name(function_name.rstrip())
-    return "{0}{1}".format(function_name, parameters)
+    if parameters == False:
+        return False
+    else:
+        return "{0}{1}".format(function_name, parameters)
     
 assumed_data_types = [check_int, check_float, check_bool, check_str]
 

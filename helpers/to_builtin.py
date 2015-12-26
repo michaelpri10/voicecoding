@@ -287,7 +287,7 @@ builtins = {
                 }
 
 def to_builtin(val):
-    builtin = "".join(i for i in func.lower() if i.isalpha())
+    builtin = "".join(i for i in val.lower() if i.isalpha())
     if builtin in builtins:
         return builtins[builtin]
     else:

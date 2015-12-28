@@ -95,7 +95,6 @@ def check_equation(val):
     if "variable X" not in equation and "variable x" not in equation:
         equation = equation.replace(" x ", " * ")
         equation = equation.replace(" X ", " * ")
-    print(equation)
     
     eq_operations = [i for i in equation.split() if i in operations.values()]
     if len(eq_operations) == 0:
@@ -120,7 +119,6 @@ def check_equation(val):
 def check_list(val):
     list_items = val.split("cut")
     l = convert_list_vals(list_items)
-    print(l)
     if l == False:
         return False
     else:

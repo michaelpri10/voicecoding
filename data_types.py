@@ -37,6 +37,8 @@ def format_value(val):
         return var_val
 
 def check_str(val):
+    if val == "space":
+        val = " "
     return '"{0}"'.format(val)
 
 def check_int(val):

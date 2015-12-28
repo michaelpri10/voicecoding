@@ -186,6 +186,7 @@ builtins = {
                 "isupper": "isupper",
                 "isuppercase": "isupper",
                 "join": "join",
+                "joined": "join",
                 "ljust": "ljust",
                 "illjust": "ljust",
                 "leftjust": "ljust",

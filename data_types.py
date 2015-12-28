@@ -87,6 +87,7 @@ def check_equation(val):
                   "+ ": " + ",
                   "minus": "-",
                   "times": "*",
+                  "multiplied by": "*",
                   "divided by": "/",
                   "over": "/",
                   "to the power of": "**"

@@ -1,19 +1,16 @@
-convert_commands = {
-                   "a sine": "assign",
-                   "acai": "assign",
-                   "assigned": "assign",
-                   "Prince": "print",
-                   "pretty": "print"
-                   }
+convert_commands = {"a sine": "assign",
+                    "acai": "assign",
+                    "assigned": "assign",
+                    "Prince": "print",
+                    "pretty": "print"}
 
-convert_func_methods = {
-                       "perimeters": "parameters",
-                       "prams": "parameters",
-                       "params": "parameters",
-                       "Aaron's": "parameters",
-                       "torrents": "parameters",
-                       "message": "method"
-                       }
+convert_func_methods = {"perimeters": "parameters",
+                        "prams": "parameters",
+                        "params": "parameters",
+                        "Aaron's": "parameters",
+                        "torrents": "parameters",
+                        "message": "method"}
+
 
 def voice_conversion(speech, time):
     if time == "command":

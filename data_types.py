@@ -6,19 +6,21 @@ from helpers.voice_conversion import voice_conversion
 from helpers.get_method import get_method
 from helpers.get_params import get_params
 
+
 def verify(val, val_type=None):
     method = get_method(val)
     val = voice_conversion(val, "method").replace(method[1], "").rstrip()
-    if val_type == None:
+    if val_type is None:
         for i in assumed_data_types:
-            if i(val) == False:
-                pass 
+            if i(val) is False:
+                pass
             else:
                 return "{0}{1}".format(i(val), method[0])
     if val_type in data_types:
         return "{0}{1}".format(data_types[val_type](val), method[0])
     else:
         return False
+
 
 def format_value(val):
     val = val.strip()
@@ -33,15 +35,17 @@ def format_value(val):
         var_val = verify(data_value, data_type)
     else:
         var_val = verify(val)
-    if var_val == False:
+    if var_val is False:
         return False
     else:
         return var_val
+
 
 def check_str(val):
     if val == "space":
         val = " "
     return '"{0}"'.format(val)
+
 
 def check_int(val):
     try:
@@ -53,6 +57,7 @@ def check_int(val):
         return int_val
     except ValueError:
         return False
+
 
 def check_float(val):
     val = val.replace("point", ".")
@@ -68,6 +73,7 @@ def check_float(val):
     except:
         return False
 
+
 def check_bool(val):
     if val.lower() == "false":
         return "False"
@@ -76,6 +82,7 @@ def check_bool(val):
     else:
         return False
 
+
 def check_var(val):
     variable = format_var_func_name(val)
     if not variable:
@@ -83,26 +90,26 @@ def check_var(val):
     else:
         return variable
 
+
 def check_equation(val):
-    operations = {
-                 "plus": "+",
-                 "Plus": "+",
-                 "+ ": " + ",
-                 "minus": "-",
-                 "times": "*",
-                 "multiplied by": "*",
-                 "divided by": "/",
-                 "over": "/",
-                 "to the power of": "**",
-                 "modulus": "%",
-                 "mod": "%"
-                 }
+    operations = {"plus": "+",
+                  "Plus": "+",
+                  "+ ": " + ",
+                  "minus": "-",
+                  "times": "*",
+                  "multiplied by": "*",
+                  "divided by": "/",
+                  "over": "/",
+                  "to the power of": "**",
+                  "modulus": "%",
+                  "mod": "%"}
+
     for i in operations:
         val = val.replace(i, operations[i])
     if "variable X" not in val and "variable x" not in val:
         val = val.replace(" x ", " * ")
         val = val.replace(" X ", " * ")
-    
+
     eq_operations = [i for i in val.split() if i in operations.values()]
     if len(eq_operations) == 0:
         return False
@@ -120,63 +127,64 @@ def check_equation(val):
 
     for i in operand_dict:
         val = val.replace(i, str(operand_dict[i]))
-    
+
     return "({0})".format(val)
 
+
 def check_comp(val):
-    comparisons = {
-                  "equals": "==",
-                  "is equal to": "==",
-                  "does not equal": "!=",
-                  "is not equal to": "!-",
-                  "is greater than": ">",
-                  "is less than": "<",
-                  "is greater than or equal to": ">=",
-                  "is less than or equal to": "<="
-                  }
-    word_comparisons = {
-                       "and": "and",
-                       "hand": "and",
-                       "not": "not",
-                       "or": "or",
-                       "is": "is",
-                       "in": "in"
-                       }
+    comparisons = {"equals": "==",
+                   "is equal to": "==",
+                   "does not equal": "!=",
+                   "is not equal to": "!-",
+                   "is greater than": ">",
+                   "is less than": "<",
+                   "is greater than or equal to": ">=",
+                   "is less than or equal to": "<="}
+
+    word_comparisons = {"and": "and",
+                        "hand": "and",
+                        "not": "not",
+                        "or": "or",
+                        "is": "is",
+                        "in": "in"}
     for i in comparisons:
         val = val.replace(i, comparisons[i])
     for i in word_comparisons:
         val = val.replace(i, word_comparisons[i])
 
-    comp_ops = [i for i in val.split() if i in comparisons.values() or i in word_comparisons.values()]
+    comp_ops = [i for i in val.split() if i in comparisons.values() or
+                i in word_comparisons.values()]
 
     to_compare = val
     for i in comp_ops:
         to_compare = to_compare.replace(i, "(@!@)")
 
-    comp_ops_dict = {}
+    to_compare_dict = {}
     for i in to_compare.split("(@!@)"):
-        comp_ops_dict[i] = format_value(i)
+        to_compare_dict[i] = format_value(i)
 
-    if False in comp_ops_dict.values():
+    if False in to_compare_dict.values():
         return False
-    
-    for i in comp_ops_dict:
-        val = val.replace(i, str(comp_ops_dict[i]))
 
-    return "{0}".format(val)
+    for i in to_compare_dict:
+        val = val.replace(i, " {0} ".format(str(to_compare_dict[i])))
+
+    return "{0}".format(val.rstrip().lstrip())
+
 
 def check_list(val):
     list_items = val.split("cut")
     l = convert_list_vals(list_items)
-    if l == False:
+    if l is False:
         return False
     else:
         return "{0}".format(l)
 
+
 def check_tuple(val):
     tuple_items = val.split("cut")
     t = convert_list_vals(tuple_items)
-    if t == False:
+    if t is False:
         return False
     else:
         if t == []:
@@ -186,10 +194,11 @@ def check_tuple(val):
         else:
             return "{0}{1}{2}".format("(", t[1:-1], ")")
 
+
 def check_set(val):
     set_items = val.split("cut")
     s = convert_list_vals(set_items)
-    if s == False:
+    if s is False:
         return False
     else:
         if s == []:
@@ -197,31 +206,30 @@ def check_set(val):
         else:
             return "{0}{1}{2}".format("{", s[1:-1], "}")
 
+
 def check_func(val):
-    val = voice_conversion(val, "function") 
+    val = voice_conversion(val, "function")
     parameters = get_params(val)
     function_name = val.split("parameters")[0]
     if to_builtin(function_name):
         function_name = to_builtin(function_name)
     else:
         function_name = format_var_func_name(function_name.rstrip())
-    if parameters == False:
+    if parameters is False:
         return False
     else:
         return "{0}{1}".format(function_name, parameters)
 
 assumed_data_types = [check_int, check_float, check_bool, check_str]
 
-data_types = {
-             "string": check_str,
-             "integer": check_int,
-             "float": check_float,
-             "boolean": check_bool,
-             "variable": check_var,
-             "equation": check_equation,
-             "comparison": check_comp,
-             "list": check_list,
-             "tuple": check_tuple,
-             "set": check_set,
-             "function": check_func
-             }
+data_types = {"string": check_str,
+              "integer": check_int,
+              "float": check_float,
+              "boolean": check_bool,
+              "variable": check_var,
+              "equation": check_equation,
+              "comparison": check_comp,
+              "list": check_list,
+              "tuple": check_tuple,
+              "set": check_set,
+              "function": check_func}

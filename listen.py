@@ -21,7 +21,7 @@ try:
                     command = value.encode("utf-8")
                 else:
                     command = value
-                print(command) 
+                print(command)
                 code = eval_command(command)
                 if code:
                     print(">>> {0}".format(code))
@@ -37,6 +37,7 @@ try:
             except sr.UnknownValueError:
                 print("Oops! Didn't catch that")
             except sr.RequestError as e:
-                print("Uh oh! Couldn't request results from Google Speech Recognition service; {0}".format(e))
+                print("""Uh oh! Couldn't request results from
+                         Google Speech Recognition service; {0}""".format(e))
 except KeyboardInterrupt:
     pass

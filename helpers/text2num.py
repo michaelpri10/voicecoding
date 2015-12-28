@@ -73,9 +73,11 @@ Magnitude = {
     'decillion':    1000000000000000000000000000000000,
 }
 
+
 class NumberException(Exception):
     def __init__(self, msg):
         Exception.__init__(self, msg)
+
 
 def text2num(s):
     if s.startswith("negative"):
@@ -106,7 +108,7 @@ def text2num(s):
         return (n + g) * -1
     else:
         return n + g
-    
+
 if __name__ == "__main__":
     assert 1 == text2num("one")
     assert 12 == text2num("twelve")
@@ -116,5 +118,7 @@ if __name__ == "__main__":
     assert 12304 == text2num("twelve thousand three hundred four")
     assert 6000000 == text2num("six million")
     assert 6400005 == text2num("six million four hundred thousand five")
-    assert 123456789012 == text2num("one hundred twenty three billion four hundred fifty six million seven hundred eighty nine thousand twelve")
+    assert 123456789012 == text2num("""one hundred twenty three billion four
+                                       hundred fifty six million seven hundred
+                                       eighty nine thousand twelve""")
     assert 4000000000000000000000000000000000 == text2num("four decillion")

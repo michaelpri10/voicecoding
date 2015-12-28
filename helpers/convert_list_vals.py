@@ -1,5 +1,6 @@
 import data_types
 
+
 def convert_list_vals(vals):
     if vals[0] == '':
         vals.pop(0)

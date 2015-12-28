@@ -1,7 +1,9 @@
 convert_commands = {
                    "a sine": "assign",
+                   "acai": "assign",
                    "assigned": "assign",
-                   "Prince": "print"
+                   "Prince": "print",
+                   "pretty": "print"
                    }
 
 convert_func_methods = {

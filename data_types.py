@@ -22,6 +22,8 @@ def verify(val, val_type=None):
 
 def format_value(val):
     val = val.strip()
+    if len(val.split()) <= 1:
+        return verify(val)
     try:
         data_type = val.split()[0].lower()
     except:
@@ -82,28 +84,30 @@ def check_var(val):
         return variable
 
 def check_equation(val):
-    operations = {"plus": "+",
-                  "Plus": "+",
-                  "+ ": " + ",
-                  "minus": "-",
-                  "times": "*",
-                  "multiplied by": "*",
-                  "divided by": "/",
-                  "over": "/",
-                  "to the power of": "**"
+    operations = {
+                 "plus": "+",
+                 "Plus": "+",
+                 "+ ": " + ",
+                 "minus": "-",
+                 "times": "*",
+                 "multiplied by": "*",
+                 "divided by": "/",
+                 "over": "/",
+                 "to the power of": "**",
+                 "modulus": "%",
+                 "mod": "%"
                  }
-    equation = val
     for i in operations:
-        equation = equation.replace(i, operations[i])
-    if "variable X" not in equation and "variable x" not in equation:
-        equation = equation.replace(" x ", " * ")
-        equation = equation.replace(" X ", " * ")
+        val = val.replace(i, operations[i])
+    if "variable X" not in val and "variable x" not in val:
+        val = val.replace(" x ", " * ")
+        val = val.replace(" X ", " * ")
     
-    eq_operations = [i for i in equation.split() if i in operations.values()]
+    eq_operations = [i for i in val.split() if i in operations.values()]
     if len(eq_operations) == 0:
         return False
 
-    operands = equation 
+    operands = val
     for i in eq_operations:
         operands = operands.replace(i, "(@!@)")
 
@@ -115,9 +119,51 @@ def check_equation(val):
         return False
 
     for i in operand_dict:
-        equation = equation.replace(i, str(operand_dict[i]))
+        val = val.replace(i, str(operand_dict[i]))
     
-    return "({0})".format(equation)
+    return "({0})".format(val)
+
+def check_comp(val):
+    comparisons = {
+                  "equals": "==",
+                  "is equal to": "==",
+                  "does not equal": "!=",
+                  "is not equal to": "!-",
+                  "is greater than": ">",
+                  "is less than": "<",
+                  "is greater than or equal to": ">=",
+                  "is less than or equal to": "<="
+                  }
+    word_comparisons = {
+                       "and": "and",
+                       "hand": "and",
+                       "not": "not",
+                       "or": "or",
+                       "is": "is",
+                       "in": "in"
+                       }
+    for i in comparisons:
+        val = val.replace(i, comparisons[i])
+    for i in word_comparisons:
+        val = val.replace(i, word_comparisons[i])
+
+    comp_ops = [i for i in val.split() if i in comparisons.values() or i in word_comparisons.values()]
+
+    to_compare = val
+    for i in comp_ops:
+        to_compare = to_compare.replace(i, "(@!@)")
+
+    comp_ops_dict = {}
+    for i in to_compare.split("(@!@)"):
+        comp_ops_dict[i] = format_value(i)
+
+    if False in comp_ops_dict.values():
+        return False
+    
+    for i in comp_ops_dict:
+        val = val.replace(i, str(comp_ops_dict[i]))
+
+    return "{0}".format(val)
 
 def check_list(val):
     list_items = val.split("cut")
@@ -163,7 +209,7 @@ def check_func(val):
         return False
     else:
         return "{0}{1}".format(function_name, parameters)
-    
+
 assumed_data_types = [check_int, check_float, check_bool, check_str]
 
 data_types = {
@@ -173,6 +219,7 @@ data_types = {
              "boolean": check_bool,
              "variable": check_var,
              "equation": check_equation,
+             "comparison": check_comp,
              "list": check_list,
              "tuple": check_tuple,
              "set": check_set,

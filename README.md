@@ -49,7 +49,14 @@ VoiceCoding is a program that will allow people to code in Python using their vo
  - example outputs: `x`, `hello_world`
 - Equation
  - for math and simple string concatenation
- - structure: "equation" {say a [data type](#data-types)} {say a value} {say an [operator](#methods-and-other-things) {say a [data type](#data-types)} {say a value} ... 
+ - structure: "equation" {say a [data type](#data-types)} {say a value} {say an [equation operator](#methods-and-other-things) {say a [data type](#data-types)} {say a value} ... 
+ - example inputs: "equation one plus five", "equation 12 times 4 plus 3", "equation 6 mod 5"
+ - example outputs: `1 + 5`, `12 * 4  + 3`, `6 % 5`
+- Comparison
+ - for comparing different Python objects 
+ - structure: "comparison" {say a [data type](#data-types)} {say a value} {say a [comparison operator](#methods-and-other-things)} {say a [data type](#data-types)} {say a value} ...
+ - example inputs: "comparison variable x is True", "comparison ten is greater than twenty five", "comparison five is less than seven and ten is greater than nine"
+ - example outputs: `x is True`, `10 > 25`, `5 < 7 and 10 > 9`
 - List 
  - ordered group of different Python objects
  - structure: "list" {say a [data type](#data-types)} {say a value} "cut" {say a [data type](#data-types)} {say a value} ...
@@ -80,10 +87,25 @@ VoiceCoding is a program that will allow people to code in Python using their vo
  - structure: {say a [data type](#data-types)} {say a value} "method" {say a method name} "parameters" {say a [data type](#data-types)} {say a value} cut ...
  - example inputs: "variable x method append parameters one", "space method join params function list params hello"
  - example outputs: `x.append(1)`, `" ".join(list("hello"))`
-- Operators
+- Equation Operators
  - for use in equations
  - `+` - "plus"
  - `-` - "minus"
  - `*` - "times", "multiplied by"
  - `/` - "divided by"
  - `**` - "to the power of"
+ - `%` - "mod", "modulus"
+- Comparison Operators
+ - for use in comparison expressions
+ - `==` - "equals", "is equal to"
+ - `!=` - "does not equal", "is not equal to"
+ - `>` - "is greater than"
+ - `<` - "is less than"
+ - `>=` - "is greater than or equal to"
+ - `<=` - "is less than or equal to"A
+ - Key words
+  - `and`
+  - `or`
+  - `is`
+  - `not`
+  - `in`

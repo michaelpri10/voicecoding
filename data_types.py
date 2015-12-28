@@ -135,7 +135,7 @@ def check_comp(val):
     comparisons = {"equals": "==",
                    "is equal to": "==",
                    "does not equal": "!=",
-                   "is not equal to": "!-",
+                   "is not equal to": "!=",
                    "is greater than": ">",
                    "is less than": "<",
                    "is greater than or equal to": ">=",

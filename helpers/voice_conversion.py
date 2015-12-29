@@ -12,6 +12,7 @@ convert_func_methods = {"perimeters": "parameters",
                         "message": "method"}
 
 
+# changes words in the voice command to better match what the user is saying
 def voice_conversion(speech, time):
     if time == "command":
         for i in convert_commands:

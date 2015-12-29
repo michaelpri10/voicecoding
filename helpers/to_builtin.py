@@ -1,3 +1,4 @@
+# maps words to builtin Python methods and functions
 builtins = {'abs': 'abs',
             'absolute': 'abs',
             'absolutevalue': 'abs',
@@ -286,6 +287,7 @@ builtins = {'abs': 'abs',
             'discard': 'discard'}
 
 
+# converts text to a builtin function name
 def to_builtin(val):
     builtin = "".join(i for i in val.lower() if i.isalpha())
     if builtin in builtins:

@@ -1,6 +1,7 @@
 from helpers.convert_list_vals import convert_list_vals
 
 
+# returns the parameters for a function or method
 def get_params(val):
     if len(val.split("parameters")) > 1:
         param_items = val.split("parameters")[-1].split("cut")

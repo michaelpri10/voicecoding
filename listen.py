@@ -27,9 +27,9 @@ try:
                 # prints command for debugging
                 print(command)
                 temp_code = eval_command(command)
-                if not Code.multiline:
-                    Code.code = temp_code
+                if Code.multiline is False:
                     Code.if_else = False
+                    Code.code = temp_code
                 print(Code.code)
                 if Code.code:
                     if Code.multiline is True:
@@ -37,7 +37,7 @@ try:
                             print(">>> {0}".format(Code.code[0]))
                             to_exec = "{0}\n".format(Code.code[0])
                             for i in range(1, len(Code.code)-1):
-                                if Code.code[i] == Code.code[i+1]:
+                                if Code.code[i].lstrip() == Code.code[i+1].lstrip() or Code.code[i].endswith("end"):
                                     pass
                                 else:
                                     print("... {0}".format(Code.code[i]))
@@ -45,6 +45,7 @@ try:
                             Code.multiline = False
                             Code.code = ""
                             Code.if_else = False
+                            Code.nested = False
                             try:
                                 exec(to_exec)
                             except Exception as e:

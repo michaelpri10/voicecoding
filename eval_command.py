@@ -25,10 +25,13 @@ def eval_command(command):
     to_parse = " ".join(command.split()[1:])
     if instruction in instructions:
         if Code.if_else:
-            if instructions[instruction](to_parse) is not None:
+            if instructions[instruction](to_parse):
                 Code.code[len(Code.code)] = "    {0}".format(
                     instructions[instruction](to_parse))
-            return "Continue if-else"
+                return "Continue if-else"
+            elif instructions[instruction](to_parse) is False:
+                print("Invalid command")
+                return False
         else:
             return instructions[instruction](to_parse)
     else:

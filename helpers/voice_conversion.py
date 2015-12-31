@@ -1,12 +1,14 @@
 convert_commands = {"a sine": "assign",
+                    "a sign": "assign",
                     "acai": "assign",
                     "assigned": "assign",
                     "Prince": "print",
                     "pretty": "print",
-                    "is": "if",
                     "else": "if else command",
                     "elf": "if else command",
-                    "Elsa": "if else command"}
+                    "Elsa": "if else command",
+                    "Ellis": "if elif",
+                    "LS": "if elif"}
 
 convert_func_methods = {"perimeters": "parameters",
                         "prams": "parameters",

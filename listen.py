@@ -37,8 +37,11 @@ try:
                             print(">>> {0}".format(Code.code[0]))
                             to_exec = "{0}\n".format(Code.code[0])
                             for i in range(1, len(Code.code)-1):
-                                print("... {0}".format(Code.code[i]))
-                                to_exec += "{0}\n".format(Code.code[i])
+                                if Code.code[i] == Code.code[i+1]:
+                                    pass
+                                else:
+                                    print("... {0}".format(Code.code[i]))
+                                    to_exec += "{0}\n".format(Code.code[i])
                             Code.multiline = False
                             Code.code = ""
                             Code.if_else = False

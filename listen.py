@@ -1,5 +1,6 @@
 import speech_recognition as sr
 from eval_command import eval_command
+from code_class import Code
 
 # initialize the mic and the speech recognizer
 r = sr.Recognizer()
@@ -25,16 +26,36 @@ try:
                     command = value
                 # prints command for debugging
                 print(command)
-                # converts the voice command to Python code and runs it
-                code = eval_command(command)
-                if code:
-                    print(">>> {0}".format(code))
-                    try:
-                        exec(code)
-                    # prevents crashing on code error
-                    except Exception as e:
-                        print(e.__doc__)
-                        print(e)
+                temp_code = eval_command(command)
+                if not Code.multiline:
+                    Code.code = temp_code
+                    Code.if_else = False
+                print(Code.code)
+                if Code.code:
+                    if Code.multiline is True:
+                        if Code.code[len(Code.code)-1] == "end":
+                            print(">>> {0}".format(Code.code[0]))
+                            to_exec = "{0}\n".format(Code.code[0])
+                            for i in range(1, len(Code.code)-1):
+                                print("... {0}".format(Code.code[i]))
+                                to_exec += "{0}\n".format(Code.code[i])
+                            Code.multiline = False
+                            Code.code = ""
+                            Code.if_else = False
+                            try:
+                                exec(to_exec)
+                            except Exception as e:
+                                print(e.__doc__)
+                                print(e)
+
+                    else:
+                        print(">>> {0}".format(Code.code))
+                        try:
+                            exec(Code.code)
+                        # prevents crashing on code error
+                        except Exception as e:
+                            print(e.__doc__)
+                            print(e)
 
                 else:
                     print("Invalid command")

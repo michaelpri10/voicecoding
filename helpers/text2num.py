@@ -42,6 +42,7 @@ Small = {
     'eight': 8,
     'nine': 9,
     'ten': 10,
+    'tenn': 10,
     'eleven': 11,
     'twelve': 12,
     'thirteen': 13,

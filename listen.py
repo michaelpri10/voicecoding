@@ -37,7 +37,7 @@ try:
                             print(">>> {0}".format(Code.code[0]))
                             to_exec = "{0}\n".format(Code.code[0])
                             for i in range(1, len(Code.code)-1):
-                                if Code.code[i].lstrip() == Code.code[i+1].lstrip() or Code.code[i].endswith("end"):
+                                if Code.code[i].endswith("end"):
                                     pass
                                 else:
                                     print("... {0}".format(Code.code[i]))
@@ -45,7 +45,7 @@ try:
                             Code.multiline = False
                             Code.code = ""
                             Code.if_else = False
-                            Code.nested = False
+                            Code.for_loop = False
                             try:
                                 exec(to_exec)
                             except Exception as e:

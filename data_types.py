@@ -29,9 +29,6 @@ def verify(val, val_type=None):
 # formats the data type according what type it is; used by the commands
 def format_value(val):
     val = val.strip()
-    # sees if val is only one word
-    if len(val.split()) <= 1:
-        return verify(val)
     # checks if data type is named
     try:
         data_type = val.split()[0].lower()

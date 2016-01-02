@@ -22,6 +22,7 @@ def eval_command(command):
         Code.if_else_loop = False
         Code.code = ""
         Code.amount_nested = ""
+        return
 
     # if there is nothing after the instruction, invalid command
     if len(command.split()) == 1:

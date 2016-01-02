@@ -11,7 +11,8 @@ convert_commands = {"a sine": "assign",
                     "LS": "if elif",
                     "4": "for ",
                     "phone": "for",
-                    "wild": "while"}
+                    "wild": "while",
+                    "Define": "define"}
 
 convert_func_methods = {"perimeters": "parameters",
                         "prams": "parameters",

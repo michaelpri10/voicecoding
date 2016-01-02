@@ -52,6 +52,7 @@ try:
                             Code.multiline = False
                             Code.code = ""
                             Code.if_else_loop = False
+                            Code.def_func = False
                             try:
                                 exec(to_exec)
                             # prevent code from crashing on an error
@@ -69,7 +70,10 @@ try:
                             print(e)
 
                 else:
-                    print("Invalid command")
+                    if Code.code is None:
+                        pass
+                    else:
+                        print("Invalid command")
 
             except sr.UnknownValueError:
                 print("Oops! Didn't catch that")

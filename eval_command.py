@@ -19,8 +19,7 @@ def eval_command(command):
         return
     elif instruction.lower() == "cancel":
         Code.multiline = False
-        Code.if_else = False
-        Code.for_loop = False
+        Code.if_else_loop = False
         Code.code = ""
         Code.amount_nested = ""
 
@@ -31,7 +30,8 @@ def eval_command(command):
     # gets and runs voice command that will be used with the instruction
     to_parse = " ".join(command.split()[1:])
     if instruction in instructions:
-        if Code.if_else or Code.for_loop:
+        # special formatting if currently in a loop/if-else statement 
+        if Code.if_else_loop:
             to_parse = voice_conversion(to_parse, "if-else/loop")
             to_add = instructions[instruction](to_parse)
             if to_add not in [None, False]:

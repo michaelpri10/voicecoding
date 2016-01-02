@@ -26,28 +26,35 @@ try:
                     command = value
                 # prints command for debugging
                 print(command)
+                # updates code if Code.multine is True 
+                # saves it for assigning to code otherwise
                 temp_code = eval_command(command)
                 if Code.multiline is False:
-                    Code.if_else = False
+                    Code.if_else_loop = False
                     Code.code = temp_code
+                # prints code for debugging
                 print(Code.code)
                 if Code.code:
+                    # check if code is multiline 
                     if Code.multiline is True:
+                        # if the last line is 'end', run the code
                         if Code.code[len(Code.code)-1] == "end":
                             print(">>> {0}".format(Code.code[0]))
                             to_exec = "{0}\n".format(Code.code[0])
                             for i in range(1, len(Code.code)-1):
-                                if Code.code[i].endswith("end"):
+                                # skip the code if it is an 'end' statement
+                                if Code.code[i].strip() == ("end"):
                                     pass
                                 else:
                                     print("... {0}".format(Code.code[i]))
                                     to_exec += "{0}\n".format(Code.code[i])
+                            # reset code, multiline, and if_else_loop 
                             Code.multiline = False
                             Code.code = ""
-                            Code.if_else = False
-                            Code.for_loop = False
+                            Code.if_else_loop = False
                             try:
                                 exec(to_exec)
+                            # prevent code from crashing on an error
                             except Exception as e:
                                 print(e.__doc__)
                                 print(e)

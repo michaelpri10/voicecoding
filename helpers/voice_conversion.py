@@ -10,7 +10,8 @@ convert_commands = {"a sine": "assign",
                     "Ellis": "if elif",
                     "LS": "if elif",
                     "4": "for ",
-                    "phone": "for"}
+                    "phone": "for",
+                    "wild": "while"}
 
 convert_func_methods = {"perimeters": "parameters",
                         "prams": "parameters",
@@ -19,13 +20,13 @@ convert_func_methods = {"perimeters": "parameters",
                         "torrents": "parameters",
                         "message": "method"}
 
-convert_if_else_loops = {"I": "variable i",
-                         "equations": "equation variable i"}
+convert_if_else_loops = {}
 
 
 # changes words in the voice command to better match what the user is saying
 def voice_conversion(speech, time):
     if time == "command":
+        # hardcoded for `if` statements
         if speech.startswith("is"):
             speech = "if" + speech[2:]
         for i in convert_commands:

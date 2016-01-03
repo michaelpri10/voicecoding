@@ -1,5 +1,6 @@
 from helpers.format_var_func_name import format_var_func_name
 from data_types import format_value
+from code_class import Code
 
 
 # assigns a value to a variable
@@ -21,6 +22,9 @@ def assign_variable(to_parse):
     # converts the variable name and value to proper forms
     var_name = format_var_func_name(unformatted_name)
     var_value = format_value(unparsed_value)
+
+    # adds variable to defined_vars
+    Code.defined_vars.add(var_name)
 
     if not var_name or not var_value:
         return False

@@ -14,7 +14,10 @@ def for_loop(to_parse):
             Code.code = {}
         # splits loop into variable and iterable
         parts = to_parse.split(" in ")
+        # add loop variable to defined_vars
         variable = format_var_func_name(parts[0])
+        Code.defined_vars.add(variable)
+        Code.loop_func_vars.append(variable)
         iterable = format_value(parts[1])
         # increases indentation if not the first line in the loop
         if len(Code.code) > 0:

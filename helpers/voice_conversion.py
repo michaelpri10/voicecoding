@@ -4,11 +4,14 @@ convert_commands = {"a sine": "assign",
                     "assigned": "assign",
                     "Prince": "print",
                     "pretty": "print",
+                    "printex": "print x",
+                    "printer": "print i",
                     "else": "if else command",
                     "elf": "if else command",
                     "Elsa": "if else command",
                     "Ellis": "if elif",
-                    "LS": "if elif",
+                    "LS ": "if elif",
+                    "LF": "if elif",
                     "4": "for ",
                     "phone": "for",
                     "wild": "while",
@@ -19,7 +22,12 @@ convert_func_methods = {"perimeters": "parameters",
                         "params": "parameters",
                         "Aaron's": "parameters",
                         "torrents": "parameters",
+                        "Graham's": "parameters",
+                        "program": "parameters",
+                        "programs": "parameters",
                         "message": "method"}
+
+convert_data_types = {"equations": "equation"}
 
 convert_if_else_loops = {}
 
@@ -36,6 +44,9 @@ def voice_conversion(speech, time):
     if time == "function" or time == "method":
         for i in convert_func_methods:
             speech = speech.replace(i, convert_func_methods[i])
+    if time == "data_type":
+        for i in convert_data_types:
+            speech = speech.replace(i, convert_data_types[i])
     if time == "if-else/loop":
         for i in convert_if_else_loops:
             speech = speech.replace(i, convert_if_else_loops[i])

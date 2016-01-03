@@ -35,7 +35,7 @@ try:
                 # prints code for debugging
                 print(Code.code)
                 if Code.code:
-                    # check if code is multiline 
+                    # checks if code is multiline 
                     if Code.multiline is True:
                         # if the last line is 'end', run the code
                         if Code.code[len(Code.code)-1] == "end":
@@ -48,11 +48,14 @@ try:
                                 else:
                                     print("... {0}".format(Code.code[i]))
                                     to_exec += "{0}\n".format(Code.code[i])
-                            # reset code, multiline, and if_else_loop 
+                            # resets code, multiline, if_else_loop, and loop_func_vars
                             Code.multiline = False
                             Code.code = ""
                             Code.if_else_loop = False
                             Code.def_func = False
+                            for i in Code.loop_func_vars:
+                                Code.defined_vars.remove(i)
+                            Code.loop_func_vars = []
                             try:
                                 exec(to_exec)
                             # prevent code from crashing on an error

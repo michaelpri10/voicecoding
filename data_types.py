@@ -5,6 +5,7 @@ from helpers.to_builtin import to_builtin
 from helpers.voice_conversion import voice_conversion
 from helpers.get_method import get_method
 from helpers.get_params import get_params
+from code_class import Code
 
 
 # checks and returns the data type
@@ -32,6 +33,7 @@ def format_value(val):
     # checks if data type is named
     try:
         data_type = val.split()[0].lower()
+        data_type = voice_conversion(val.split()[0].lower(), "data_type")
     except:
         data_type = None
     # verifies a named data type
@@ -107,6 +109,16 @@ def check_var(val):
     else:
         return variable
 
+def check_var_assumed(val):
+    variable = format_var_func_name(val)
+    if not variable:
+        return False
+    else:
+        if variable not in Code.defined_vars:
+            return False
+        else:
+            return variable
+
 
 # returns an equation
 def check_equation(val):
@@ -114,6 +126,7 @@ def check_equation(val):
     operations = {"plus": "+",
                   "Plus": "+",
                   "+ ": " + ",
+                  " +": " + ",
                   "minus": "-",
                   "times": "*",
                   "multiplied by": "*",
@@ -121,7 +134,10 @@ def check_equation(val):
                   "over": "/",
                   "to the power of": "**",
                   "modulus": "%",
-                  "mod": "%"}
+                  "mod": "%",
+                  "madh": "%",
+                  "made": "%",
+                  "iPod": "i %"}
 
     # replaces words that map to an operation
     for i in operations:
@@ -150,7 +166,10 @@ def check_equation(val):
     for i in operand_dict:
         val = val.replace(i, str(operand_dict[i]))
 
-    return "({0})".format(val)
+    if val is False:
+        return False
+    else:
+        return "({0})".format(val)
 
 
 # returns a comparison expression
@@ -158,12 +177,17 @@ def check_comp(val):
     # maps words to comparisons
     comparisons = {"equals": "==",
                    "is equal to": "==",
+                   "is equals to": "==",
                    "does not equal": "!=",
+                   "does not equals": "!=",
                    "is not equal to": "!=",
+                   "is not equals to": "!=",
                    "is greater than": ">",
                    "is less than": "<",
                    "is greater than or equal to": ">=",
-                   "is less than or equal to": "<="}
+                   "is greater than or equals to": ">=",
+                   "is less than or equal to": "<=",
+                   "is less than or equals to": "<="}
 
     word_comparisons = {"and": "and",
                         "hand": "and",
@@ -177,6 +201,7 @@ def check_comp(val):
         val = val.replace(i, comparisons[i])
     for i in word_comparisons:
         val = val.replace(i, word_comparisons[i])
+    val = val.replace("equal", "==")
 
     # keeps track of the comparison operators being used
     comp_ops = [i for i in val.split() if i in comparisons.values() or
@@ -259,7 +284,7 @@ def check_func(val):
         return "{0}{1}".format(function_name, parameters)
 
 # data types that don't need to be explicitly named
-assumed_data_types = [check_int, check_float, check_bool, check_str]
+assumed_data_types = [check_var_assumed, check_int, check_float, check_bool, check_str]
 
 # all data types
 data_types = {"string": check_str,

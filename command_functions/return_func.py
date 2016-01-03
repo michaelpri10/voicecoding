@@ -2,7 +2,9 @@ from data_types import format_value
 from code_class import Code
 
 
+# returns from a function
 def return_func(to_parse):
+    # can only be used in functions
     if Code.def_func is False:
         return False
     else:

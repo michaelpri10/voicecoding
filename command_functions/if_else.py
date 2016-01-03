@@ -16,9 +16,9 @@ def if_else(to_parse):
     elif to_parse.startswith("elif"):
         # implies comparison if it isn't said
         if to_parse.startswith("comparison"):
-            comparison = format_value(to_parse)
+            comparison = format_value(to_parse[4:])
         else:
-            comparison = format_value("comparison {0}".format(to_parse))
+            comparison = format_value("comparison {0}".format(to_parse[4:]))
         if to_parse == "elif" or comparison is False:
             return False
         else:

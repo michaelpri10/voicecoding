@@ -12,16 +12,21 @@ def eval_command(command):
     if instruction.lower() == "exit":
         print("Exiting...")
         quit()
+    # unindent a multiline statement
     if instruction.lower() == "end":
         if Code.multiline:
             Code.code[len(Code.code)] = "{0}end".format(Code.amount_nested)
             Code.amount_nested = Code.amount_nested[:-4]
         return
+    # cancel multiline statement
     elif instruction.lower() == "cancel":
         Code.multiline = False
         Code.if_else_loop = False
         Code.code = ""
         Code.amount_nested = ""
+        for i in Code.loop_func_vars:
+            Code.defined_vars.remove(i)
+        Code.loop_func_vars = []
         return
 
     # if there is nothing after the instruction, invalid command
@@ -32,7 +37,7 @@ def eval_command(command):
     to_parse = " ".join(command.split()[1:])
     if instruction in instructions:
         # special formatting if currently in a loop/if-else statement 
-        if Code.if_else_loop:
+        if Code.if_else_loop or Code.def_func:
             to_parse = voice_conversion(to_parse, "if-else/loop")
             to_add = instructions[instruction](to_parse)
             if to_add not in [None, False]:

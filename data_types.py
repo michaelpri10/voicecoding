@@ -109,11 +109,14 @@ def check_var(val):
     else:
         return variable
 
+
+# returns a variable; run when "variable" is not said
 def check_var_assumed(val):
     variable = format_var_func_name(val)
     if not variable:
         return False
     else:
+        # makes sure variable has been defined already
         if variable not in Code.defined_vars:
             return False
         else:
@@ -284,7 +287,11 @@ def check_func(val):
         return "{0}{1}".format(function_name, parameters)
 
 # data types that don't need to be explicitly named
-assumed_data_types = [check_var_assumed, check_int, check_float, check_bool, check_str]
+assumed_data_types = [check_var_assumed,
+                      check_int,
+                      check_float,
+                      check_bool,
+                      check_str]
 
 # all data types
 data_types = {"string": check_str,

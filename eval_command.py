@@ -36,7 +36,8 @@ def eval_command(command):
     # gets and runs voice command that will be used with the instruction
     to_parse = " ".join(command.split()[1:])
     if instruction in instructions:
-        # special formatting if currently in a loop/if-else statement 
+        # special formatting if currently in a
+        # loop/if-else statement/function definition
         if Code.if_else_loop or Code.def_func:
             to_parse = voice_conversion(to_parse, "if-else/loop")
             to_add = instructions[instruction](to_parse)

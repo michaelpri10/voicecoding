@@ -18,9 +18,11 @@ def def_func(to_parse):
                 param_items[i] = param_items[i].lstrip()
             else:
                 param_items[i] = "variable {0}".format(param_items[i].lstrip())
-        to_parse = "{0} parameters {1}".format(to_parse.split("parameters")[0], " cut ".join(param_items))
+        to_parse = "{0} parameters {1}".format(
+            to_parse.split("parameters")[0], " cut ".join(param_items)
+        )
 
-    # creates implied function data type 
+    # creates implied function data type
     if to_parse.startswith("function"):
         function = format_value(to_parse)
     else:
@@ -36,7 +38,7 @@ def def_func(to_parse):
     if len(Code.code) > 0:
         Code.amount_nested += "    "
         Code.code[len(Code.code)] = "{0}def {1}:".format(
-            Code.amount_nested, function 
+            Code.amount_nested, function
         )
     else:
         Code.code[len(Code.code)] = "def {0}:".format(function)

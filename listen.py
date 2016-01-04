@@ -26,7 +26,7 @@ try:
                     command = value
                 # prints command for debugging
                 print(command)
-                # updates code if Code.multine is True 
+                # updates code if Code.multine is True
                 # saves it for assigning to code otherwise
                 temp_code = eval_command(command)
                 if Code.multiline is False:
@@ -35,7 +35,7 @@ try:
                 # prints code for debugging
                 print(Code.code)
                 if Code.code:
-                    # checks if code is multiline 
+                    # checks if code is multiline
                     if Code.multiline is True:
                         # if the last line is 'end', run the code
                         if Code.code[len(Code.code)-1] == "end":
@@ -48,7 +48,7 @@ try:
                                 else:
                                     print("... {0}".format(Code.code[i]))
                                     to_exec += "{0}\n".format(Code.code[i])
-                            # resets code, multiline, if_else_loop, and loop_func_vars
+                            # resets Code
                             Code.multiline = False
                             Code.code = ""
                             Code.if_else_loop = False

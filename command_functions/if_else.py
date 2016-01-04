@@ -1,5 +1,4 @@
 from data_types import format_value
-from data_types import data_types
 from code_class import Code
 
 

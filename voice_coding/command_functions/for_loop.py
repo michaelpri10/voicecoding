@@ -1,6 +1,6 @@
-from .data_types import format_value
-from .code_class import Code
-from .format_var_func_name import format_var_func_name
+from ..data_types import format_value
+from ..code_class import Code
+from ..format_var_func_name import format_var_func_name
 
 
 def for_loop(to_parse):

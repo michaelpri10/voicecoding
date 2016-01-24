@@ -1,4 +1,4 @@
-from .data_types import format_value
+from ..data_types import format_value
 
 
 # calls a function or method

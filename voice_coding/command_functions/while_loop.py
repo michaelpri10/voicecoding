@@ -1,5 +1,5 @@
-from .data_types import format_value
-from .code_class import Code
+from ..data_types import format_value
+from ..code_class import Code
 
 
 def while_loop(to_parse):

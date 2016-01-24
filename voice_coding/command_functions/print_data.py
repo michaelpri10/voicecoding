@@ -1,4 +1,4 @@
-from .data_types import format_value
+from ..data_types import format_value
 
 
 # prints out data; shorter alternative to "call function print parameters ..."

@@ -1,6 +1,6 @@
 from ..data_types import format_value
 from ..code_class import Code
-from ..voice_conversion import voice_conversion
+from ..helpers.voice_conversion import voice_conversion
 
 
 # defines a function

@@ -1,10 +1,63 @@
 VoiceCoding
 ===========
 
-VoiceCoding is a program that will allow people to code in Python using
-their voice. Using different voice commands that can be found in the
-`documentation <#documentation>`__, users can perform simple tasks in
-Python in an environment like the Python command-line interpreter.
+.. image:: https://img.shields.io/pypi/v/VoiceCoding.svg
+    :target: https://pypi.python.org/pypi/VoiceCoding/
+    :alt: Latest Version
+
+.. image:: https://img.shields.io/pypi/dm/VoiceCoding.svg
+    :target: https://pypi.python.org/pypi/VoiceCoding/
+    :alt: Downloads
+
+.. image:: https://img.shields.io/pypi/pyversions/VoiceCoding.svg
+    :target: https://pypi.python.org/pypi/VoiceCoding/
+    :alt: Supported Python Versions
+
+About
+-----
+
+VoiceCoding is a program that will allow people to code in Python using their voice. Using different voice commands that can be found in the `documentation <#documentation>`__, users can perform simple tasks in Python in an environment similar to the Python command-line interpreter. VoiceCoding is currently only a command-line application, but the plan is for it to eventually become a full Python IDE controlled completely by voice, while still staying open source and free. You can check this project out on `PyPi  <https://pypi.python.org/pypi/VoiceCoding>`__ or fork it on `Github <https://github.com/michaelpri10/VoiceCoding>`__.
+
+After you've `installed <#installation>`__ the program, you can run it by typing
+
+``python -m voice_coding``
+
+in your command prompt or terminal.
+
+Installation
+------------
+
+On all operating systems, you first need to install the program itself using ``pip``:
+
+``pip install VoiceCoding``
+
+That will also install `SpeechRecognition <https://pypi.python.org/pypi/SpeechRecognition/>`__ which VoiceCoding depends on. You will have to manually install `PyAudio <https://people.csail.mit.edu/hubert/pyaudio/>`__, the other library that VoiceCoding depends on. The method of installation varies by operating system.
+
+Microsoft Windows
+~~~~~~~~~~~~~~~~~
+
+You can simply just use ``pip``:
+
+``pip install pyaudio``
+
+Mac OS X
+~~~~~~~~
+
+First, you must install the PortAudio library with ``brew`` and then use ``pip`` to install PyAudio:
+
+``brew install portaudio``
+``pip install pyaudio``
+
+Ubuntu/Debian
+~~~~~~~~~~~~~
+
+Run:
+
+``sudo apt-get install python-pyaudio python3-pyaudio``
+
+If that does not work, you should just try installing with ``pip``:
+
+``pip install pyaudio``
 
 Documentation
 -------------

@@ -1,7 +1,7 @@
-from .format_var_func_name import format_var_func_name
-from .text2num import text2num
-from .to_builtin import to_builtin
-from .voice_conversion import voice_conversion
+from .helpers.format_var_func_name import format_var_func_name
+from .helpers.text2num import text2num
+from .helpers.to_builtin import to_builtin
+from .helpers.voice_conversion import voice_conversion
 from .code_class import Code
 
 

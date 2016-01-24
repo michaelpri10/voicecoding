@@ -7,9 +7,10 @@ LONG_DESCRIPTION = open("README.rst").read()
 
 setup(
     name="VoiceCoding",
-    packages=["voice_coding"],
+    packages=["voice_coding", "voice_coding/command_functions", "voice_coding/helpers"],
     install_requires=["SpeechRecognition"],
     version=VERSION,
+    license="MIT",
     description="Python program that allows to code with your voice",
     long_description=LONG_DESCRIPTION,
     author="Michael Prieto (michaelpri10)",

@@ -1,11 +1,8 @@
-from helpers.format_var_func_name import format_var_func_name
-from helpers.text2num import text2num
-from helpers.convert_list_vals import convert_list_vals
-from helpers.to_builtin import to_builtin
-from helpers.voice_conversion import voice_conversion
-from helpers.get_method import get_method
-from helpers.get_params import get_params
-from code_class import Code
+from .format_var_func_name import format_var_func_name
+from .text2num import text2num
+from .to_builtin import to_builtin
+from .voice_conversion import voice_conversion
+from .code_class import Code
 
 
 # checks and returns the data type
@@ -47,6 +44,70 @@ def format_value(val):
         return False
     else:
         return var_val
+
+
+# converts a list of values to proper data types
+def convert_list_vals(vals):
+    # (bug fix) removes first or last item if it is blank
+    if vals[0] == '':
+        vals.pop(0)
+    if len(vals) > 0 and vals[-1] == '':
+        vals.pop()
+    # return empty list if there or no values in it
+    if len(vals) == 0:
+            return []
+    # formats the values in the list
+    formatted = [format_value(i) for i in vals]
+    # if any of the data types is False, invalid command
+    if False in formatted:
+        return False
+    else:
+        for i in formatted:
+            # converts booleans (a bug that fixed a bug)
+            if str(i).lower() == "false":
+                formatted[formatted.index(i)] = False
+            elif str(i).lower() in ["true", "through", "tru"]:
+                formatted[formatted.index(i)] = True
+        # hack that formats variables and strings properly
+        final = "".join([i for i in list(str(formatted)) if i != "'"])
+
+        return final
+
+
+# returns the parameters for a function or method
+def get_params(val):
+    if len(val.split("parameters")) > 1:
+        param_items = val.split("parameters")[-1].split("cut")
+        parameters = convert_list_vals(param_items)
+    else:
+        parameters = ""
+    if parameters is False:
+        return False
+    else:
+        parameters = "{0}{1}{2}".format("(", parameters[1:-1], ")")
+    return parameters
+
+
+# checks for and returns a method
+def get_method(val):
+    val = voice_conversion(val, "method")
+    # makes sure that command contains a method call
+    if "method" in val:
+        method_spot = val.find("method")
+        parameters = get_params(val)
+        # gets method name and converts it to builtin if it can
+        method = val.split("parameters")[0][method_spot+7:]
+        if to_builtin(method):
+            method = to_builtin(method)
+        else:
+            method = format_var_func_name(method.rstrip())
+        if parameters is False:
+            return False
+        # returns the method and the text that needs to be removed from val
+        else:
+            return [".{0}{1}".format(method, parameters), val[method_spot:]]
+    else:
+        return ["", ""]
 
 
 # returns a string

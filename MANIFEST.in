@@ -1,0 +1,4 @@
+graft voice_coding
+recursive-exclude voice_coding *.pyc
+include LICENSE
+include README.rst

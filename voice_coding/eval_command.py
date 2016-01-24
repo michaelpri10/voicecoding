@@ -1,6 +1,6 @@
-from instructions import instructions
-from helpers.voice_conversion import voice_conversion
-from code_class import Code
+from .instructions import instructions
+from .code_class import Code
+from .voice_conversion import voice_conversion
 
 
 # evaluates the voice command

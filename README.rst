@@ -1,26 +1,26 @@
-VoiceCoding
+voicecoding
 ===========
 
-.. image:: https://img.shields.io/pypi/v/VoiceCoding.svg
-    :target: https://pypi.python.org/pypi/VoiceCoding/
+.. image:: https://img.shields.io/pypi/v/voicecoding.svg
+    :target: https://pypi.python.org/pypi/voicecoding/
     :alt: Latest Version
 
-.. image:: https://img.shields.io/pypi/dm/VoiceCoding.svg
-    :target: https://pypi.python.org/pypi/VoiceCoding/
+.. image:: https://img.shields.io/pypi/dm/voicecoding.svg
+    :target: https://pypi.python.org/pypi/voicecoding/
     :alt: Downloads
 
-.. image:: https://img.shields.io/pypi/pyversions/VoiceCoding.svg
-    :target: https://pypi.python.org/pypi/VoiceCoding/
+.. image:: https://img.shields.io/pypi/pyversions/voicecoding.svg
+    :target: https://pypi.python.org/pypi/voicecoding/
     :alt: Supported Python Versions
 
 About
 -----
 
-VoiceCoding is a program that will allow people to code in Python using their voice. Using different voice commands that can be found in the `documentation <#documentation>`__, users can perform simple tasks in Python in an environment similar to the Python command-line interpreter. VoiceCoding is currently only a command-line application, but the plan is for it to eventually become a full Python IDE controlled completely by voice, while still staying open source and free. You can check this project out on `PyPi  <https://pypi.python.org/pypi/VoiceCoding>`__ or fork it on `Github <https://github.com/michaelpri10/VoiceCoding>`__.
+voicecoding is a program that will allow people to code in Python using their voice. Using different voice commands that can be found in the `documentation <#documentation>`__, users can perform simple tasks in Python in an environment similar to the Python command-line interpreter. voicecoding is currently only a command-line application, but the plan is for it to eventually become a full Python IDE controlled completely by voice, while still staying open source and free. You can check this project out on `PyPi  <https://pypi.python.org/pypi/voicecoding>`__ or fork it on `Github <https://github.com/michaelpri10/voicecoding>`__.
 
 After you've `installed <#installation>`__ the program, you can run it by typing
 
-``python -m voice_coding``
+``python -m voicecoding``
 
 in your command prompt or terminal.
 
@@ -29,9 +29,9 @@ Installation
 
 On all operating systems, you first need to install the program itself using ``pip``:
 
-``pip install VoiceCoding``
+``pip install voicecoding``
 
-That will also install `SpeechRecognition <https://pypi.python.org/pypi/SpeechRecognition/>`__ which VoiceCoding depends on. You will have to manually install `PyAudio <https://people.csail.mit.edu/hubert/pyaudio/>`__, the other library that VoiceCoding depends on. The method of installation varies by operating system.
+That will also install `SpeechRecognition <https://pypi.python.org/pypi/SpeechRecognition/>`__ which voicecoding depends on. You will have to manually install `PyAudio <https://people.csail.mit.edu/hubert/pyaudio/>`__, the other library that voicecoding depends on. The method of installation varies by operating system.
 
 Microsoft Windows
 ~~~~~~~~~~~~~~~~~

@@ -1,13 +1,13 @@
 from setuptools import setup
-import voice_coding
+import voicecoding
 
-VERSION = voice_coding.__version__
+VERSION = voicecoding.__version__
 
 LONG_DESCRIPTION = open("README.rst").read()
 
 setup(
-    name="VoiceCoding",
-    packages=["voice_coding", "voice_coding/command_functions", "voice_coding/helpers"],
+    name="voicecoding",
+    packages=["voicecoding", "voicecoding/commandfunctions", "voicecoding/helpers"],
     install_requires=["SpeechRecognition"],
     version=VERSION,
     license="MIT",
@@ -15,9 +15,9 @@ setup(
     long_description=LONG_DESCRIPTION,
     author="Michael Prieto (michaelpri10)",
     author_email="michaelpri10@gmail.com",
-    url="https://github.com/michaelpri10/VoiceCoding",
+    url="https://github.com/michaelpri10/voicecoding",
     entry_points={
-        "console_scripts": ["voice_coding = voice_coding.voice_coding:main"]
+        "console_scripts": ["voicecoding = voicecoding.voicecoding:main"]
     },
     classifiers=[
         "Development Status :: 4 - Beta",

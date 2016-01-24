@@ -1,4 +1,4 @@
-graft voice_coding
-recursive-exclude voice_coding *.pyc
+graft voicecoding
+recursive-exclude voicecoding *.pyc
 include LICENSE
 include README.rst

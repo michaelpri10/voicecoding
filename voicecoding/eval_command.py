@@ -24,6 +24,7 @@ def eval_command(command):
         Code.if_else_loop = False
         Code.code = ""
         Code.amount_nested = ""
+        Code.output.append("\n")
         for i in Code.loop_func_vars:
             Code.defined_vars.remove(i)
         Code.loop_func_vars = []
@@ -47,7 +48,7 @@ def eval_command(command):
                 )
                 return
             elif to_add is False:
-                print("Invalid command")
+                Code.errors.append("Invalid command")
                 return False
         else:
             return instructions[instruction](to_parse)

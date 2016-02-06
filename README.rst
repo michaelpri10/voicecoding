@@ -46,6 +46,7 @@ Mac OS X
 First, you must install the PortAudio library with ``brew`` and then use ``pip`` to install PyAudio:
 
 ``brew install portaudio``
+
 ``pip install pyaudio``
 
 Ubuntu/Debian
@@ -236,7 +237,7 @@ Tuple
 
 -  immutable sequence of Python objects
 -  structure: "tuple" {say a `data type <#data-types>`__} {say a value}
-   "cut" {say a `data type <#data-types>`__\ and a value} ...
+   "cut" {say a `data type <#data-types>`__ and a value} ...
 -  example inputs: "tuple", "tuple one cut two cut three", "tuple hello"
 -  example outputs: ``()``, ``(1, 2, 3)``, ``("hello",)``
 
@@ -304,7 +305,7 @@ Comparison Operators
 -  ``>`` - "is greater than"
 -  ``<`` - "is less than"
 -  ``>=`` - "is greater than or equal to"
--  ``<=`` - "is less than or equal to"A
+-  ``<=`` - "is less than or equal to"
 -  Key words
 -  ``and``
 -  ``or``

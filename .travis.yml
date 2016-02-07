@@ -1,6 +1,5 @@
 language: python
 python:
-  - "2.6"
   - "2.7"
   - "3.2"
   - "3.3"
@@ -13,6 +12,7 @@ branches:
     - master
 install:
   - pip install SpeechRecognition
+  - pip install pyaudio
   - pip install flake8
   - pip install pytest
   - pip install .

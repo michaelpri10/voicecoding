@@ -30,9 +30,7 @@ def format_value(val):
     # checks if data type is named
     try:
         data_type = val.split()[0].lower()
-        print("Before conversion: " + data_type)
         data_type = voice_conversion(val.split()[0].lower(), "data_type")
-        print("Name is: " + data_type)
     except:
         data_type = None
     # verifies a named data type
@@ -212,7 +210,6 @@ def check_equation(val):
     if "variable X" not in val and "variable x" not in val:
         val = val.replace(" x ", " * ")
         val = val.replace(" X ", " * ")
-
 
     # keeps track of operations that are being used
     eq_operations = [i for i in val.split() if i in operations.values()]

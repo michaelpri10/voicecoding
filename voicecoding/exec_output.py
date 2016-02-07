@@ -16,10 +16,8 @@ def exec_output(code):
         exec(code, globals())
     except Exception as e:
         return "{0}\n{1}\n".format(e.__doc__, e)
-   
 
-    #remember to restore the original stdout!
+    # remember to restore the original stdout!
     sys.stdout = sys.__stdout__
- 
-    print(buffer.getvalue())
+
     return buffer.getvalue()

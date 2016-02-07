@@ -1,0 +1,26 @@
+language: python
+python:
+  - "2.6"
+  - "2.7"
+  - "3.2"
+  - "3.3"
+  - "3.4"
+  - "3.5"
+  - "3.5-dev"
+  - "nightly"
+branches:
+  only:
+    - master
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -y python3-pyaudio
+  - sudo apt-get install -y python-pyaudio 
+install:
+  - pip install SpeechRecognition
+  - pip install pyaudio
+  - pip install flake8
+  - pip install pytest
+  - pip install .
+script:
+  - flake8 ./
+  - py.test ./

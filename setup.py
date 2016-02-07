@@ -7,7 +7,11 @@ LONG_DESCRIPTION = open("README.rst").read()
 
 setup(
     name="voicecoding",
-    packages=["voicecoding", "voicecoding/commandfunctions", "voicecoding/helpers"],
+    packages=[
+        "voicecoding",
+        "voicecoding/commandfunctions",
+        "voicecoding/helpers"
+    ],
     install_requires=["SpeechRecognition"],
     version=VERSION,
     license="MIT",

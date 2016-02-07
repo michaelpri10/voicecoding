@@ -45,11 +45,8 @@ def voice_conversion(speech, time):
         for i in convert_func_methods:
             speech = speech.replace(i, convert_func_methods[i])
     if time == "data_type":
-        print("Converting a data type")
-        print(speech)
         for i in convert_data_types:
             speech = speech.replace(i, convert_data_types[i])
-        print(speech)
     if time == "if-else/loop":
         for i in convert_if_else_loops:
             speech = speech.replace(i, convert_if_else_loops[i])

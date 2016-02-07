@@ -49,12 +49,17 @@ def main():
                         # checks if code is multiline
                         if Code.multiline is True:
                             current_line = Code.code[len(Code.code)-1]
-                            if current_line != "end" and current_line != Code.last_line:
+                            if (current_line != "end" and
+                                    current_line != Code.last_line):
                                 if len(Code.code) == 1:
-                                   Code.output.append(">>> {0}".format(current_line))
-                                   Code.last_line = current_line
+                                    Code.output.append(">>> {0}".format(
+                                        current_line
+                                    ))
+                                    Code.last_line = current_line
                                 else:
-                                    Code.output.append("... {0}".format(current_line))
+                                    Code.output.append("... {0}".format(
+                                        current_line
+                                    ))
                                     Code.last_line = current_line
                             # if the last line is 'end', run the code
                             if Code.code[len(Code.code)-1] == "end":
@@ -91,7 +96,9 @@ def main():
                 except sr.UnknownValueError:
                     Code.errors.append("Oops! Didn't catch that")
                 except sr.RequestError as e:
-                    Code.errors.append("""Uh oh! Couldn't request results from Google
-                                          Speech Recognition service; {0}""".format(e))
+                    Code.errors.append("""Uh oh! Couldn't request
+                                          results from Google
+                                          Speech Recognition service;
+                                          {0}""".format(e))
     except KeyboardInterrupt:
         pass

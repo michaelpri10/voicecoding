@@ -13,6 +13,10 @@ voicecoding
     :target: https://pypi.python.org/pypi/voicecoding/
     :alt: Supported Python Versions
 
+.. image:: https://travis-ci.org/michaelpri10/voicecoding.svg?branch=master
+    :target: https://travis-ci.org/michaelpri10/voicecoding
+    :alt: Status
+
 About
 -----
 

@@ -12,7 +12,6 @@ branches:
     - master
 install:
   - pip install SpeechRecognition
-  - pip install pyaudio
   - pip install flake8
   - pip install pytest
   - pip install .

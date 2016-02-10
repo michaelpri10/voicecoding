@@ -13,7 +13,7 @@ def verify(val, val_type=None):
     # checks for assumed data types (int, float, bool, str) if no data is named
     if val_type is None:
         if check_bool(val) is not False:
-            return "{0}".format(check_bool(val)) 
+            return "{0}".format(check_bool(val))
         else:
             print("line 18")
             for i in assumed_data_types:
@@ -144,7 +144,7 @@ def check_int(val):
 
 # returns a float
 def check_float(val):
-    val = val.replace("point", ".")
+    val = val.replace(" point ", ".")
     parts = val.split(".")
     try:
         # convert whole number words to a number
@@ -197,29 +197,33 @@ def check_var_assumed(val):
 # returns an equation
 def check_equation(val):
     # maps words to an operation
-    operations = {"plus": "+",
-                  "Plus": "+",
-                  "+ ": " + ",
-                  " +": " + ",
-                  "minus": "-",
-                  "times": "*",
-                  "multiplied by": "*",
-                  "divided by": "/",
-                  "over": "/",
-                  "to the power of": "**",
-                  "modulus": "%",
-                  " mod ": "%",
-                  "madh": "%",
-                  "made": "%",
-                  "iPod": "i %",
-                  "a modulus": "i modulus"}
+    operations = {
+        "plus": "+",
+        "Plus": "+",
+        "+ ": " + ",
+        " +": " + ",
+        "minus": "-",
+        "times": "*",
+        "multiplied by": "*",
+        "x": "*",
+        "divided by": "/",
+        "over": "/",
+        "to the power of": "**",
+        "modulus": "%",
+        " mod ": "%",
+        "madh": "%",
+        "made": "%",
+        "iPod": "i %",
+        "a modulus": "i modulus"
+    }
 
+    # hacky solution for using variable `x` in a  equation
+    val = val.replace("variable X", "this is a variable hack")
+    val = val.replace("variable x", "this is a variable hack")
     # replaces words that map to an operation
     for i in operations:
         val = val.replace(i, operations[i])
-    if "variable X" not in val and "variable x" not in val:
-        val = val.replace(" x ", " * ")
-        val = val.replace(" X ", " * ")
+    val = val.replace("this is a variable hack", "x")
 
     # keeps track of operations that are being used
     eq_operations = [i for i in val.split() if i in operations.values()]
@@ -289,7 +293,7 @@ def check_comp(val):
 
     # keeps track of the comparison operators being used
     comparisons = [">=", "<=", "==", "!=", ">", "<",
-                   "and", "not", "or", "is", "in"] 
+                   "and", "not", "or", "is", "in"]
     comp_ops = [i for i in val.split() if i in comparisons]
 
     # converts the objects being compared to valid data types
@@ -369,20 +373,24 @@ def check_func(val):
         return "{0}{1}".format(function_name, parameters)
 
 # data types that don't need to be explicitly named
-assumed_data_types = [check_var_assumed,
-                      check_int,
-                      check_float,
-                      check_str]
+assumed_data_types = [
+    check_var_assumed,
+    check_int,
+    check_float,
+    check_str
+]
 
 # all data types
-data_types = {"string": check_str,
-              "integer": check_int,
-              "float": check_float,
-              "boolean": check_bool,
-              "variable": check_var,
-              "equation": check_equation,
-              "comparison": check_comp,
-              "list": check_list,
-              "tuple": check_tuple,
-              "set": check_set,
-              "function": check_func}
+data_types = {
+    "string": check_str,
+    "integer": check_int,
+    "float": check_float,
+    "boolean": check_bool,
+    "variable": check_var,
+    "equation": check_equation,
+    "comparison": check_comp,
+    "list": check_list,
+    "tuple": check_tuple,
+    "set": check_set,
+    "function": check_func
+}

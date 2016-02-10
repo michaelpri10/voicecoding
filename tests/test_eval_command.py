@@ -24,11 +24,12 @@ def test_single_line(command, expected):
         ("for i in function range params one cut one hundred one",
             "for i in range(1, 101):", {}),
         ("if ten is greater than four", "if 10 > 4:", {}),
-        ("elif ten is less than four", "elif 10 < 4:", 
+        ("elif ten is less than four", "elif 10 < 4:",
             {0: "if 10 > 4:", 1: "    print(True)"}),
         ("else", "else:", {0: "if 10 > 4:", 1: "    print(True)",
-            2: "elif 10 < 4:", 3: "    print(False)"}),
-        ("return list one cut two cut three", "    return [1, 2, 3]", {0: "def return_list():"}),
+                              2: "elif 10 < 4:", 3: "    print(False)"}),
+        ("return list one cut two cut three",
+            "    return [1, 2, 3]", {0: "def return_list():"}),
         ("while true", "while True:", {})
     ]
 )

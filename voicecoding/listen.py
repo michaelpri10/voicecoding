@@ -15,8 +15,9 @@ def main():
         with m as source:
             r.adjust_for_ambient_noise(source)
             while True:
+                # clears screen
+                print("\n" * 100)
                 # prints out previous code and errors
-                Code.clear()
                 for i in Code.output:
                     if i != '':
                         print(i)

@@ -9,6 +9,3 @@ class Code:
     defined_vars = set()
     output = []
     errors = []
-
-    def clear():
-        print("\n"*100)

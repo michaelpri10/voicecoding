@@ -12,15 +12,24 @@ def verify(val, val_type=None):
     val = voice_conversion(val, "method").replace(method[1], "").rstrip()
     # checks for assumed data types (int, float, bool, str) if no data is named
     if val_type is None:
-        for i in assumed_data_types:
-            if i(val) is False:
-                pass
-            else:
-                return "{0}{1}".format(i(val), method[0])
+        if check_bool(val) is not False:
+            return "{0}".format(check_bool(val)) 
+        else:
+            print("line 18")
+            for i in assumed_data_types:
+                if i(val) is False:
+                    print(i)
+                    pass
+                else:
+                    return "{0}{1}".format(i(val), method[0])
     # check for data type if data type is named
     if val_type in data_types:
-        return "{0}{1}".format(data_types[val_type](val), method[0])
+        if data_types[val_type](val) is False:
+            return False
+        else:
+            return "{0}{1}".format(data_types[val_type](val), method[0])
     else:
+        Code.errors.append("data_types line 31")
         return False
 
 
@@ -41,6 +50,7 @@ def format_value(val):
         var_val = verify(val)
     # checks if a data type was returned
     if var_val is False:
+        print("line 53")
         return False
     else:
         return var_val
@@ -240,37 +250,47 @@ def check_equation(val):
 # returns a comparison expression
 def check_comp(val):
     # maps words to comparisons
-    comparisons = {"equals": "==",
-                   "is equal to": "==",
-                   "is equals to": "==",
-                   "does not equal": "!=",
-                   "does not equals": "!=",
-                   "is not equal to": "!=",
-                   "is not equals to": "!=",
-                   "is greater than": ">",
-                   "is less than": "<",
-                   "is greater than or equal to": ">=",
-                   "is greater than or equals to": ">=",
-                   "is less than or equal to": "<=",
-                   "is less than or equals to": "<="}
+    first_comparisons = {
+        "is greater than or equal to": ">=",
+        "is greater than or equals to": ">=",
+        "is less than or equal to": "<=",
+        "is less than or equals to": "<="
+    }
 
-    word_comparisons = {"and": "and",
-                        "hand": "and",
-                        "not": "not",
-                        "or": "or",
-                        "is": "is",
-                        "in": "in"}
+    second_comparisons = {
+        "equals": "==",
+        "is equal to": "==",
+        "is equals to": "==",
+        "does not equal": "!=",
+        "does not equals": "!=",
+        "is not equal to": "!=",
+        "is not equals to": "!=",
+        "is greater than": ">",
+        "is less than": "<"
+    }
+
+    word_comparisons = {
+        "and": "and",
+        "hand": "and",
+        "not": "not",
+        "or": "or",
+        "is": "is",
+        "in": "in"
+    }
 
     # replaces words that map to a comparison
-    for i in comparisons:
-        val = val.replace(i, comparisons[i])
+    for i in first_comparisons:
+        val = val.replace(i, first_comparisons[i])
+    for i in second_comparisons:
+        val = val.replace(i, second_comparisons[i])
     for i in word_comparisons:
         val = val.replace(i, word_comparisons[i])
     val = val.replace("equal", "==")
 
     # keeps track of the comparison operators being used
-    comp_ops = [i for i in val.split() if i in comparisons.values() or
-                i in word_comparisons.values()]
+    comparisons = [">=", "<=", "==", "!=", ">", "<",
+                   "and", "not", "or", "is", "in"] 
+    comp_ops = [i for i in val.split() if i in comparisons]
 
     # converts the objects being compared to valid data types
     # and formats them with the comparison operators
@@ -352,7 +372,6 @@ def check_func(val):
 assumed_data_types = [check_var_assumed,
                       check_int,
                       check_float,
-                      check_bool,
                       check_str]
 
 # all data types

@@ -7,6 +7,7 @@ from voicecoding.data_types import format_value
     "command, expected", [
         ("string hello world", '"hello world"'),
         ("hello world", '"hello world"'),
+        ("hello world method upper", '"hello world".upper()'),
         ("integer 10", "10"),
         ("10", "10"),
         ("ten", "10"),
@@ -35,6 +36,7 @@ from voicecoding.data_types import format_value
         ("set", "set()"),
         ("set one cut two cut x", "{1, 2, x}"),
         ("function string params x", "str(x)"),
+        ("module math method factorial params ten", "math.factorial(10)")
     ]
 )
 def test_data_types(command, expected):

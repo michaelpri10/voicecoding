@@ -194,6 +194,26 @@ def check_var_assumed(val):
             return variable
 
 
+def check_module(val):
+    module = val.replace(" ", "")
+    if not module:
+        return False
+    else:
+        return module
+
+
+def check_module_assumed(val):
+    module = val.replace(" ", "")
+    module = module.replace("-", "")
+    if not module:
+        return False
+    else:
+        if module not in Code.defined_vars:
+            return False
+        else:
+            return module
+
+
 # returns an equation
 def check_equation(val):
     # maps words to an operation
@@ -375,6 +395,7 @@ def check_func(val):
 # data types that don't need to be explicitly named
 assumed_data_types = [
     check_var_assumed,
+    check_module_assumed,
     check_int,
     check_float,
     check_str
@@ -387,6 +408,7 @@ data_types = {
     "float": check_float,
     "boolean": check_bool,
     "variable": check_var,
+    "module": check_module,
     "equation": check_equation,
     "comparison": check_comp,
     "list": check_list,

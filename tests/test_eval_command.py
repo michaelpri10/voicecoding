@@ -8,6 +8,8 @@ from voicecoding.code_class import Code
         ("assign one hundred to variable x", "x = 100"),
         ("call function print params hello world", 'print("hello world")'),
         ("print hello world", 'print("hello world")'),
+        ("import math", "import math"),
+        ("import date time", "import datetime")
     ]
 )
 def test_single_line(command, expected):

@@ -227,7 +227,7 @@ def check_equation(val):
         "over": "/",
         "to the power of": "**",
         "modulus": "%",
-        " mod ": "%",
+        " mod ": " % ",
         "madh": "%",
         "made": "%",
         "iPod": "i %",
@@ -242,7 +242,7 @@ def check_equation(val):
         val = val.replace(i, operations[i])
     val = val.replace("this is a variable hack", "x")
     # keeps track of operations that are being used
-    eq_operations = [i for i in val if i in operations.values()]
+    eq_operations = [i for i in val.split() if i in operations.values()]
     if len(eq_operations) == 0:
         return False
 

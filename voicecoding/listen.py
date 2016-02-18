@@ -50,7 +50,7 @@ def main():
                         # checks if code is multiline
                         if Code.multiline is True:
                             current_line = Code.code[len(Code.code)-1]
-                            if (current_line != "end" and
+                            if (current_line.strip() != "end" and
                                     current_line != Code.last_line):
                                 if len(Code.code) == 1:
                                     Code.output.append(">>> {0}".format(

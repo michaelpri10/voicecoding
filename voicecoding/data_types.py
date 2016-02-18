@@ -15,7 +15,6 @@ def verify(val, val_type=None):
         if check_bool(val) is not False:
             return "{0}".format(check_bool(val))
         else:
-            print("line 18")
             for i in assumed_data_types:
                 if i(val) is False:
                     print(i)
@@ -29,7 +28,6 @@ def verify(val, val_type=None):
         else:
             return "{0}{1}".format(data_types[val_type](val), method[0])
     else:
-        Code.errors.append("data_types line 31")
         return False
 
 
@@ -50,7 +48,6 @@ def format_value(val):
         var_val = verify(val)
     # checks if a data type was returned
     if var_val is False:
-        print("line 53")
         return False
     else:
         return var_val
@@ -234,7 +231,7 @@ def check_equation(val):
         "madh": "%",
         "made": "%",
         "iPod": "i %",
-        "a modulus": "i modulus"
+        "a modulus": "i %"
     }
 
     # hacky solution for using variable `x` in a  equation
@@ -244,9 +241,8 @@ def check_equation(val):
     for i in operations:
         val = val.replace(i, operations[i])
     val = val.replace("this is a variable hack", "x")
-
     # keeps track of operations that are being used
-    eq_operations = [i for i in val.split() if i in operations.values()]
+    eq_operations = [i for i in val if i in operations.values()]
     if len(eq_operations) == 0:
         return False
 
@@ -260,12 +256,14 @@ def check_equation(val):
         operand_dict[i] = format_value(i)
 
     if False in operand_dict.values():
+        print("False 261")
         return False
 
     for i in operand_dict:
         val = val.replace(i, str(operand_dict[i]))
 
     if val is False:
+        print("False 268")
         return False
     else:
         return "({0})".format(val)

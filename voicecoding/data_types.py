@@ -17,7 +17,6 @@ def verify(val, val_type=None):
         else:
             for i in assumed_data_types:
                 if i(val) is False:
-                    print(i)
                     pass
                 else:
                     return "{0}{1}".format(i(val), method[0])
@@ -226,6 +225,7 @@ def check_equation(val):
         "divided by": "/",
         "over": "/",
         "to the power of": "**",
+        "^": "**",
         "modulus": "%",
         " mod ": " % ",
         "madh": "%",
@@ -234,7 +234,7 @@ def check_equation(val):
         "a modulus": "i %"
     }
 
-    # hacky solution for using variable `x` in a  equation
+    # hacky solution for using variable `x` in an  equation
     val = val.replace("variable X", "this is a variable hack")
     val = val.replace("variable x", "this is a variable hack")
     # replaces words that map to an operation
@@ -256,14 +256,12 @@ def check_equation(val):
         operand_dict[i] = format_value(i)
 
     if False in operand_dict.values():
-        print("False 261")
         return False
 
     for i in operand_dict:
         val = val.replace(i, str(operand_dict[i]))
 
     if val is False:
-        print("False 268")
         return False
     else:
         return "({0})".format(val)

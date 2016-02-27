@@ -3,6 +3,7 @@ import speech_recognition as sr
 from .eval_command import eval_command
 from .code_class import Code
 from .exec_output import exec_output
+from .helpers.get_terminal_size import get_terminal_size 
 
 # initialize the mic and the speech recognizer
 r = sr.Recognizer()
@@ -16,12 +17,12 @@ def main():
             r.adjust_for_ambient_noise(source)
             while True:
                 # clears screen
-                print("\n" * 100)
+                print("\n" * (get_terminal_size()[1]+10))
                 # prints out previous code and errors
                 for i in Code.output:
                     if i != '':
                         print(i)
-                print("-" * 100)
+                print("-" * get_terminal_size()[0])
                 for i in Code.errors:
                     print(i)
                 Code.errors = []

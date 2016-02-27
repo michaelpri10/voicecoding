@@ -3,7 +3,7 @@ import speech_recognition as sr
 from .eval_command import eval_command
 from .code_class import Code
 from .exec_output import exec_output
-from .helpers.get_terminal_size import get_terminal_size 
+from .helpers.get_terminal_size import get_terminal_size
 
 # initialize the mic and the speech recognizer
 r = sr.Recognizer()

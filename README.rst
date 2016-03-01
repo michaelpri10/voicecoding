@@ -99,6 +99,14 @@ Call
    variable x method pop"
 -  example outputs: ``x.append(1)``, ``x.pop()``
 
+Import
+''''''
+
+-  structure: "import" {say any module name}
+-  imports a module to allow its method to be used
+-  example inputs: "import math", "import web browser"
+-  example outputs: ``import math``, ``import webbrowser``
+
 If/Elif/Else
 ''''''''''''
 
@@ -203,6 +211,14 @@ Variable\*\*
 -  example inputs: "variable x", "variable hello world", "i"
 -  example outputs: ``x``, ``hello_world``, ``i``
 
+Module\*\*
+''''''''''
+
+-  allows you to use functions and methods from different Python files (note: always used with a method)
+-  stucture: "module method" {method name}
+-  example inputs: "module math method factorial parameters ten", "module web browser method open params URL"
+-  example outputs: ``math.factorial(10)``, ``webbrowser.open(url)``
+
 Equation
 ''''''''
 
@@ -272,8 +288,7 @@ Function
 can just say "one" instead of "integer one" to get the result of ``1``.
 
 \*\*\ `"Variable" <#variable>`__ doesn't have to be said if the variable
-has been defined, is being used as a parameter in a `user-defined
-function <#define>`__, or is the variable in a `for loop <#for>`__.
+has been defined, is being used as a parameter in a `function <#function>`__ or `method <#methods>`__, or is the variable in a `for loop <#for>`__. `"Module" <#module>`__ doesn't have to be said if the module is already imported.
 
 Other Things
 ~~~~~~~~~~~~
@@ -288,6 +303,13 @@ Methods
 -  example inputs: "variable x method append parameters one", "space
    method join params function list params hello"
 -  example outputs: ``x.append(1)``, ``" ".join(list("hello"))``
+
+Keywords
+''''''''
+
+-  "exit" - exits the program
+-  "cancel" - cancels a multiline statement without exiting the program
+-  "end" - unindents or ends a `for loop <#for>`__, `while loop <#while>`__, `function definition <#define>`__, or `if/elif/else statement <#if-elif-else>`__
 
 Equation Operators
 ''''''''''''''''''

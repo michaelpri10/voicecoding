@@ -8,6 +8,7 @@ def assign_variable(to_parse):
     v = "to variable"
     to_parse = to_parse.replace("the variable", v)
     to_parse = to_parse.replace("two variable", v)
+    to_parse = to_parse.replace("two-variable", v)
     to_parse = to_parse.replace("- variable ", v)
     # makes sure that "to variable" is in the command
     unformatted_name_place = to_parse.find(" to variable ")

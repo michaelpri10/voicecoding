@@ -244,7 +244,9 @@ def check_equation(val):
     # keeps track of operations that are being used
     eq_operations = [i for i in val.split() if i in operations.values()]
     if len(eq_operations) == 0:
-        return False
+        eq_operations = [i for i in val if i in operations.values()]
+        if len(eq_operations) == 0:
+            return False
 
     # converts the operands to data types and formats them with the operations
     operands = val

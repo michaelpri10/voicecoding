@@ -4,6 +4,7 @@ convert_commands = {"a sine": "assign",
                     "assigned": "assign",
                     "Prince": "print",
                     "pretty": "print",
+                    "Sprint": "print",
                     "printex": "print x",
                     "printer": "print i",
                     "else": "if else command",
@@ -16,7 +17,8 @@ convert_commands = {"a sine": "assign",
                     "4": "for ",
                     "phone": "for",
                     "wild": "while",
-                    "Define": "define"}
+                    "Define": "define",
+                    "returnx": "return x"}
 
 convert_func_methods = {"perimeters": "parameters",
                         "prams": "parameters",

@@ -1,0 +1,9 @@
+[python_unused]
+files = **/*.py
+bears = PyUnusedCodeBear
+default_actions = PyUnusedCodeBear: ApplyPatchAction
+
+[pep8]  # New section to avoid conflicts of fixes with PyUnusedCodeBear
+files = **/*.py
+bears = PEP8Bear
+default_actions = PEP8Bear: ApplyPatchAction

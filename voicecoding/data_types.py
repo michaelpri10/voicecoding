@@ -61,7 +61,7 @@ def convert_list_vals(vals):
         vals.pop()
     # return empty list if there or no values in it
     if len(vals) == 0:
-            return []
+        return []
     # formats the values in the list
     formatted = [format_value(i) for i in vals]
     # if any of the data types is False, invalid command

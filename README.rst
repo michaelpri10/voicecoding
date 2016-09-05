@@ -24,7 +24,7 @@ voicecoding is a program that will allow people to code in Python using their vo
 
 After you've `installed <#installation>`__ the program, you can run it by typing
 
-``python -m voicecoding``
+``voicecoding``
 
 in your command prompt or terminal.
 

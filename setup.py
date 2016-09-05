@@ -21,7 +21,7 @@ setup(
     author_email="michaelpri10@gmail.com",
     url="https://github.com/michaelpri10/voicecoding",
     entry_points={
-        "console_scripts": ["voicecoding = voicecoding.voicecoding:main"]
+        "console_scripts": ["voicecoding = voicecoding.listen:main"]
     },
     classifiers=[
         "Development Status :: 4 - Beta",

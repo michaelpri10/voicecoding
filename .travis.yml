@@ -11,9 +11,7 @@ branches:
   only:
     - master
 install:
-  - pip install SpeechRecognition
-  - pip install flake8
-  - pip install pytest
+  - pip install SpeechRecognition flake8 pytest
   - pip install .
 script:
   - flake8 ./
